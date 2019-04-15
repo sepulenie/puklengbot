@@ -5,8 +5,8 @@ from telebot import types
 from datetime import datetime, date, time, timedelta
 
 def gettime():
-    pukdate = date(2017, 12, 26)
-    puktime = time(18, 00)
+    pukdate = date(2019, 4, 15)
+    puktime = time(17, 00)
     pukdatetime = datetime.combine(pukdate, puktime)
     currenttime = datetime.now()
     ostatok = pukdatetime - currenttime
