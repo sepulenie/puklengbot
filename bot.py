@@ -1,9 +1,4 @@
-#!/usr/bin/env python
-import config
-import telebot
-from telebot import types
-from datetime import datetime, date, time, timedelta
-
+'''
 def gettime():
     pukdate = date(2019, 4, 15)
     puktime = time(17, 00)
@@ -65,3 +60,4 @@ if __name__ == '__main__':
             
 if __name__ == '__main__':
     bot.polling(none_stop=True)
+'''
