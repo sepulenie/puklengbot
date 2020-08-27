@@ -12,7 +12,6 @@ def gettime():
     pri = '{} часов {} минут {} секунд до разрыва пукленгов'.format(d.strftime("%H"), d.strftime("%M"), d.strftime("%S"))
     print(pri)
     return pri
-    
    
 bot = telebot.TeleBot(config.token)
 @bot.message_handler(commands=['time'])
