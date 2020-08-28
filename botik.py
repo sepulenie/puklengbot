@@ -1,11 +1,21 @@
 import datetime
 from teleconfig import token
-from telegram.ext import Updater, CommandHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+
 
 def hello(update, context):
     update.message.reply_text(
-        'Hello, {}'.format(update.message.from_user.first_name))
+        'Hello, {},\nмы находимся в чате под названием "{}"'.format(update.message.from_user.first_name, update.message.chat.title))
 
+def echo(update,context):
+    a = update.message.text.lower()
+    if a == 'да':
+        print ('да')
+        update.message.reply_text('Пизда')
+    
+def sun(update, context):
+    print('member joined')
+    update.message.reply_text('Под этим солнцем и небом мы тепло приветствуем тебя!')
 
 def cp77(update, context):
 
@@ -49,16 +59,21 @@ def cp77(update, context):
         result
     )
 
-def pukleng(upadte, context):
-    
 
 
 
-updater = Updater(token, use_context=True)
 
-updater.dispatcher.add_handler(CommandHandler('hello', hello))
-updater.dispatcher.add_handler(CommandHandler('cp77', cp77))
+def main():
+    updater = Updater(token, use_context=True)
+
+    updater.dispatcher.add_handler(CommandHandler('hello', hello))
+    updater.dispatcher.add_handler(CommandHandler('cp77', cp77))
+    updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
+    updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, sun))
+
+    updater.start_polling()
+    updater.idle()
 
 
-updater.start_polling()
-updater.idle()
+if __name__ == '__main__':
+    main()
