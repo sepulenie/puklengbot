@@ -1,7 +1,8 @@
-import datetime
-from teleconfig import token
+import os, datetime, random
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from teleconfig import token
 
+kubik_path = r"d:/Projects/Python/puklengbot/kubik/"
 
 def hello(update, context):
     update.message.reply_text(
@@ -64,18 +65,18 @@ def cp77(update, context):
     )
 
 def get_kub(update, context):
-    update.message.reply_sticker('CAACAgIAAxkBAAEBRKVfSPQSgB9Oypni7FQzb40ED0BRpgACpAEAAvzl3QAB4uQ7CqVVUCAbBA')
+    random_kubik = kubik_path + random.choice([kub for kub in os.listdir(kubik_path) if os.path.isfile(os.path.join(kubik_path, kub))])
+    update.message.reply_photo(photo = open(random_kubik , 'rb'))
 
 
 def main():
     updater = Updater(token, use_context=True)
-
     updater.dispatcher.add_handler(CommandHandler('hello', hello)) #говорит "привет"
     updater.dispatcher.add_handler(CommandHandler('cp77', cp77))    #отсчитывает время до cp77
-    updater.dispatcher.add_handler(CommandHandler('get_kub', get_kub))
+    updater.dispatcher.add_handler(CommandHandler('get_kub', get_kub)) # показать кубика из папки
     updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, pizda)) #простейшее да-пизда
-    updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, sun))
-    updater.dispatcher.add_handler(MessageHandler(Filters.status_update.left_chat_member, leave))
+    updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, sun)) # приветствие при добавлении в чат
+    updater.dispatcher.add_handler(MessageHandler(Filters.status_update.left_chat_member, leave)) # стикер при удалении из чата
 
     updater.start_polling()
     updater.idle()
