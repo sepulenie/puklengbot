@@ -2,7 +2,8 @@ import os, datetime, random
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
 
-kubik_path = r"d:/Projects/Python/puklengbot/kubik/"
+kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
+# kubik_path = r"D:/Projects/Python/puklengbot/kubik/"
 
 def hello(update, context):
     update.message.reply_text(
