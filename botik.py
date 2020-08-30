@@ -10,7 +10,6 @@ def hello(update, context):
         'Hello, {},\nмы находимся в чате под названием "{}"'.format(update.message.from_user.first_name, update.message.chat.title))
 
 def sun(update, context):
-    print('member joined')
     update.message.reply_text('Под этим солнцем и небом мы тепло приветствуем тебя!')
 
 def leave(update, context):
@@ -24,7 +23,6 @@ def pizda(update,context):
         update.message.reply_text('Да')
     
 def cp77(update, context):
-
     def truedays(days):
         day = str(days)
         if day[-1] in ['0', '5', '6', '7', '8', '9'] or (len(day) > 1 and day[-2] == '1'):
@@ -59,11 +57,7 @@ def cp77(update, context):
     th = truehours(whenitsready.seconds//3600)
     tm = trueminutes((whenitsready.seconds//60) % 60)
     result = "до выхода Cyberpunk 2077 осталось: {0}, {1}, {2}".format(td, th, tm)
-    print(result)
-
-    update.message.reply_text(
-        result
-    )
+    update.message.reply_text(result)
 
 def get_kub(update, context):
     random_kubik = kubik_path + random.choice([kub for kub in os.listdir(kubik_path) if os.path.isfile(os.path.join(kubik_path, kub))])
