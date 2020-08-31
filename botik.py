@@ -4,10 +4,47 @@ from teleconfig import token
 
 kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
 # kubik_path = r"D:/Projects/Python/puklengbot/kubik/"
+dick = {}
+
+
+
+
+
+
+
+ 
+
+
+def dicktionary(update, context):
+    message = (update.message.text).split()
+    print(type(message))
+    def make_pairs(message):
+        for i in range(len(message) - 1):
+            yield (message[i], message[i+1])
+    pair = make_pairs(message)
+    for word_1, word_2 in pair:
+        dick[word_1] = word_2
+
+    print(dick)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def hello(update, context):
     update.message.reply_text(
         'Hello, {},\nмы находимся в чате под названием "{}"'.format(update.message.from_user.first_name, update.message.chat.title))
+
 
 def sun(update, context):
     update.message.reply_text('Под этим солнцем и небом мы тепло приветствуем тебя!')
@@ -15,12 +52,12 @@ def sun(update, context):
 def leave(update, context):
     update.message.reply_sticker("CAACAgIAAxkBAAEBRJRfSOutTFb77ZdoE6Fe4t09Sqi9cgACYAAD3N3lFSPHyb0-_G4ZGwQ")
 
-def pizda(update,context):
-    a = update.message.text.lower()
-    if a == 'да':
-        update.message.reply_text('Пизда')
-    elif a=='пизда':
-        update.message.reply_text('Да')
+#def pizda(update,context):
+#   a = update.message.text.lower()
+#   if a == 'да':
+#       update.message.reply_text('Пизда')
+#   elif a=='пизда':
+#       update.message.reply_text('Да')
     
 def cp77(update, context):
     def truedays(days):
@@ -69,9 +106,10 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('hello', hello)) #говорит "привет"
     updater.dispatcher.add_handler(CommandHandler('cp77', cp77))    #отсчитывает время до cp77
     updater.dispatcher.add_handler(CommandHandler('get_kub', get_kub)) # показать кубика из папки
-    updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, pizda)) #простейшее да-пизда
+    #updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, pizda)) #простейшее да-пизда
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, sun)) # приветствие при добавлении в чат
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.left_chat_member, leave)) # стикер при удалении из чата
+    updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, dicktionary)) #добавляет слово из чата в словарь
 
     updater.start_polling()
     updater.idle()
