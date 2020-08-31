@@ -1,10 +1,10 @@
-import os, datetime, random
+import os, datetime, random, numpy
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
 
 kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
 # kubik_path = r"D:/Projects/Python/puklengbot/kubik/"
-dick = {}
+
 
 
 
@@ -13,22 +13,35 @@ dick = {}
 
 
  
-
+dick = {}
 
 def dicktionary(update, context):
-    message = (update.message.text).split()
-    print(type(message))
-    def make_pairs(message):
-        for i in range(len(message) - 1):
-            yield (message[i], message[i+1])
-    pair = make_pairs(message)
-    for word_1, word_2 in pair:
-        dick[word_1] = word_2
+    message = update.message.text
+    ind_words = message.split()
+    print(ind_words)
+    def make_pairs(ind_words):
+        for i in range(len(ind_words)- 1):
+            yield (ind_words[i], ind_words[i + 1])
+    pair = make_pairs(ind_words)
 
-    print(dick)
+    for word_1, word_2 in pair: 
+        if word_1 in dick.keys():
+            dick[word_1].append(word_2)
+        else:
+            dick[word_1] = [word_2]
+    # print(dick)
 
+def markov(update, context):
+    def  markov_chain():
+        first_word = random.choice(list(dick.keys()))
+        chain  = [first_word]
+        n_words = random.randrange(30)
+        first_word = random.choice(list(dick.keys()))
+        for i in range (n_words):
+            chain.append(random.choice(dick[chain[-1]]))
 
-
+        return(' '.join(chain))
+    update.message.reply_text(markov_chain())
 
 
 
@@ -110,7 +123,7 @@ def main():
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, sun)) # приветствие при добавлении в чат
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.left_chat_member, leave)) # стикер при удалении из чата
     updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, dicktionary)) #добавляет слово из чата в словарь
-
+    updater.dispatcher.add_handler(CommandHandler('markov', markov)) #говорит рандомную хуйню
     updater.start_polling()
     updater.idle()
 
