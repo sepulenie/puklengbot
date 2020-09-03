@@ -24,11 +24,12 @@ def dicktionary(update, context):
     pair_of_words = make_pairs(words_in_message)
 
     for word_1, word_2 in pair_of_words: 
-        # print(word_1, word_2)
+        print(word_1, word_2)
         if word_1 in dick.keys():
             dick[word_1].append(word_2)
-            print(dick.get(word_1))
-
+            print(dick[0], dick[word_1])
+        else:
+            print(dick[word_1])
 
 
 

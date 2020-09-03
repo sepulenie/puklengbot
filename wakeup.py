@@ -1,7 +1,9 @@
 import csv
-dick = {'123wewewe345': ['2353478', 'dfgcvbcvb'], '23cvcvbcbcv': 'werwerwerwer', 'sdfsdfss': '2345456rt4dfgdfbdf', '234345': 'cvbcvbnn'}
+dick = {'олень': ['пошел', 'побежал'], 'пошел': 'на', 'хуй': 'блядина', 'такая': 'эдакая'}
 
-
-dickdump = csv.writer(open('dickdump.csv', 'w'))
-for word_1 in dick:
-    print(dick.get(word_1))
+with open('dickdump.csv', 'w') as f:
+    writer = csv.DictWriter(
+        f, fieldnames=list(dick[0].keys()), quoting=csv.QUOTE_NONNUMERIC)
+    writer.writeheader()
+    for d in dick:
+        writer.writerow(d)
