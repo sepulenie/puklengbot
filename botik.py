@@ -1,59 +1,75 @@
-import os, datetime, random, numpy
+import os, datetime, random, numpy, csv
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
 
 kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
 # kubik_path = r"D:/Projects/Python/puklengbot/kubik/"
 
-
-
-
-
-
-
-
- 
 dick = {}
+for word_1, word_2 in csv.reader(open('dickdump.csv')):
+    dick[word_1] = word_2
+#print(dick)
+
 
 def dicktionary(update, context):
-    message = update.message.text
-    ind_words = message.split()
-    print(ind_words)
-    def make_pairs(ind_words):
-        for i in range(len(ind_words)- 1):
-            yield (ind_words[i], ind_words[i + 1])
-    pair = make_pairs(ind_words)
+    message = update.message.text.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ')
+    words_in_message = message.split()
+    #print(words_in_message)
+    dickdump = csv.writer(open('dickdump.csv', 'w'))
 
-    for word_1, word_2 in pair: 
+    def make_pairs(words_in_message):                                   
+        for i in range(len(words_in_message)- 1):
+            yield (words_in_message[i], words_in_message[i + 1])
+
+    pair_of_words = make_pairs(words_in_message)
+
+    for word_1, word_2 in pair_of_words: 
+        # print(word_1, word_2)
+        if word_1 in dick.keys():
+            dick[word_1].append(word_2)
+            print(dick.get(word_1))
+
+
+
+
+'''
+
+    message = update.message.text                                      
+    words_in_message = message.split()                                  
+    dickdump = csv.writer(open('dickdump.csv', 'w'))
+    def make_pairs(words_in_message):                                   
+        for i in range(len(words_in_message)- 1):
+            yield (words_in_message[i], words_in_message[i + 1])
+
+    pair_of_words = make_pairs(words_in_message)
+
+    for word_1, word_2 in pair_of_words: 
         if word_1 in dick.keys():
             dick[word_1].append(word_2)
         else:
             dick[word_1] = [word_2]
-    # print(dick)
+    for word_1, word_2 in dick.items():
+        dickdump.writerow([word_1,word_2])
+       
 
 def markov(update, context):
-    def  markov_chain():
-        first_word = random.choice(list(dick.keys()))
-        chain  = [first_word]
-        n_words = random.randrange(30)
-        first_word = random.choice(list(dick.keys()))
-        for i in range (n_words):
-            chain.append(random.choice(dick[chain[-1]]))
+    dickdict = {}
+    for key, val in csv.reader(open('dickdump.csv')):
+        dickdict[key] = val
+    first_word = random.choice(list(dickdict.keys()))
+    print(dickdict)
+    while first_word[0].isupper() == False:
+        first_word = random.choice(list(dickdict.keys()))
+    else:
+        chain = [first_word]
+        n_words = random.randint(1, 30)
+        first_word = random.choice(list(dickdict.keys()))
+        for i in range(n_words):
+            chain.append(random.choice(dickdict[chain[-i]]))
+        markov_result = (' '.join(chain))
+        update.message.reply_text(markov_result.replace(' , ', ', ').replace(' . ','. ').replace(' -','-'))
 
-        return(' '.join(chain))
-    update.message.reply_text(markov_chain())
-
-
-
-
-
-
-
-
-
-
-
-
+'''
 def hello(update, context):
     update.message.reply_text(
         'Hello, {},\nмы находимся в чате под названием "{}"'.format(update.message.from_user.first_name, update.message.chat.title))
@@ -109,7 +125,7 @@ def cp77(update, context):
     result = "до выхода Cyberpunk 2077 осталось: {0}, {1}, {2}".format(td, th, tm)
     update.message.reply_text(result)
 
-def get_kub(update, context):
+#def get_kub(update, context):
     random_kubik = kubik_path + random.choice([kub for kub in os.listdir(kubik_path) if os.path.isfile(os.path.join(kubik_path, kub))])
     update.message.reply_photo(photo = open(random_kubik , 'rb'))
 
@@ -118,12 +134,12 @@ def main():
     updater = Updater(token, use_context=True)
     updater.dispatcher.add_handler(CommandHandler('hello', hello)) #говорит "привет"
     updater.dispatcher.add_handler(CommandHandler('cp77', cp77))    #отсчитывает время до cp77
-    updater.dispatcher.add_handler(CommandHandler('get_kub', get_kub)) # показать кубика из папки
+    #updater.dispatcher.add_handler(CommandHandler('get_kub', get_kub)) # показать кубика из папки
     #updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, pizda)) #простейшее да-пизда
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, sun)) # приветствие при добавлении в чат
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.left_chat_member, leave)) # стикер при удалении из чата
     updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, dicktionary)) #добавляет слово из чата в словарь
-    updater.dispatcher.add_handler(CommandHandler('markov', markov)) #говорит рандомную хуйню
+    #updater.dispatcher.add_handler(CommandHandler('markov', markov)) #говорит рандомную хуйню
     updater.start_polling()
     updater.idle()
 
