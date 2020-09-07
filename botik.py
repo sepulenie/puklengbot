@@ -6,17 +6,16 @@ kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
 # kubik_path = r"D:/Projects/Python/puklengbot/kubik/"
 
 dick = {}
-for word_1, word_2 in csv.reader(open('dickdump.csv')):
-    dick[word_1] = word_2
+#for word_1, word_2 in csv.reader(open('dickdump.csv', encoding='utf8')):
+#    dick[word_1] = word_2
 #print(dick)
 
 
 def dicktionary(update, context):
+    dickdump = csv.writer(open('dickdump.csv', 'w', newline='', encoding='utf8]['))
     message = update.message.text.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ')
     words_in_message = message.split()
     #print(words_in_message)
-    dickdump = csv.writer(open('dickdump.csv', 'w'))
-
     def make_pairs(words_in_message):                                   
         for i in range(len(words_in_message)- 1):
             yield (words_in_message[i], words_in_message[i + 1])
@@ -24,15 +23,17 @@ def dicktionary(update, context):
     pair_of_words = make_pairs(words_in_message)
 
     for word_1, word_2 in pair_of_words: 
-        print(word_1, word_2)
         if word_1 in dick.keys():
             dick[word_1].append(word_2)
-            print(dick[0], dick[word_1])
+             
         else:
-            print(dick[word_1])
-
-
-
+            dick[word_1] = [word_2]
+        
+    dicklist = [word_1] + word_2
+    for row in dickdump:
+        if row[0] == dicklist[0] and 
+        dickdump.writerow(dicklist)
+        
 '''
 
     message = update.message.text                                      
