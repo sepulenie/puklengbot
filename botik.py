@@ -31,8 +31,8 @@ def dicktionary(update, context):
         
     dicklist = [word_1] + word_2
     for row in dickdump:
-        if row[0] == dicklist[0] and 
-        dickdump.writerow(dicklist)
+        if row[0] == dicklist[0]:
+            dickdump.writerow(dicklist)
         
 '''
 

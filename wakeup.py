@@ -1,27 +1,14 @@
-import csv
-dick = {'олень': ['пошел', 'побежал'], 'пошел': ['на'], 'хуй': ['блядина', 'пидорас'], 'такая': ['эдакая']}
-dickforcheck = {'хуй': ['блядина', 'пидорас']}
+import sqlite3
+
+dick = {"рыба": ["окунь"], 
+        "животное":["конь", "лось"], 
+        "растение": ["подсолнух", "ромашка", "подорожник"]}
 
 
-def writer():
-    dickdump = csv.writer(open('dickdump.csv', 'w', newline='', encoding='utf8]['))
-    for word_1, word_2 in dick.items():
-        glist = [word_1] + word_2
-        dickdump.writerow(glist)
+conn = sqlite3.connect("dickdump.db")
 
-def reader():
-    dickreader = csv.reader(open('dickdump.csv',  encoding='utf8'))
-    for row in dickreader:
-        pass
+cursor = conn.cursor()
+cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(word_1 text, word_2 text)""")
 
 
-
-def checkrow():
-    dickreader = csv.reader(open('dickdump.csv',  encoding='utf8'))
-    for row in dickreader:
-        print(row)
-
-
-writer()
-reader()
-checkrow()
+cursor.execute("INSERT INTO dickdump VALUES (?,?)", dick)
