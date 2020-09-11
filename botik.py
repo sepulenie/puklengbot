@@ -1,4 +1,4 @@
-import os, datetime, random, numpy, csv
+import os, datetime, random, numpy, sqlite3
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
 
@@ -6,34 +6,32 @@ kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
 # kubik_path = r"D:/Projects/Python/puklengbot/kubik/"
 
 dick = {}
-#for word_1, word_2 in csv.reader(open('dickdump.csv', encoding='utf8')):
-#    dick[word_1] = word_2
-#print(dick)
+conn = sqlite3.connect("dickdump.db", check_same_thread=False)
+cursor = conn.cursor()
+cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(word_1 text, word_2 text)""")
+
+
+
+
 
 
 def dicktionary(update, context):
-    dickdump = csv.writer(open('dickdump.csv', 'w', newline='', encoding='utf8]['))
     message = update.message.text.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ')
     words_in_message = message.split()
-    #print(words_in_message)
+
     def make_pairs(words_in_message):                                   
         for i in range(len(words_in_message)- 1):
             yield (words_in_message[i], words_in_message[i + 1])
 
     pair_of_words = make_pairs(words_in_message)
 
-    for word_1, word_2 in pair_of_words: 
+    for word_1, word_2 in pair_of_words:
+        cursor.execute("INSERT INTO dickdump VALUES (?,?)", (word_1, word_2_string))
         if word_1 in dick.keys():
             dick[word_1].append(word_2)
              
         else:
             dick[word_1] = [word_2]
-        
-    dicklist = [word_1] + word_2
-    for row in dickdump:
-        if row[0] == dicklist[0]:
-            dickdump.writerow(dicklist)
-        
 '''
 
     message = update.message.text                                      
