@@ -11,10 +11,6 @@ cursor = conn.cursor()
 cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(word_1 text, word_2 text)""")
 
 
-
-
-
-
 def dicktionary(update, context):
     message = update.message.text.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ')
     words_in_message = message.split()
@@ -26,12 +22,40 @@ def dicktionary(update, context):
     pair_of_words = make_pairs(words_in_message)
 
     for word_1, word_2 in pair_of_words:
-        cursor.execute("INSERT INTO dickdump VALUES (?,?)", (word_1, word_2_string))
+        sql = "SELECT * FROM dickdump WHERE word_1"
+        
         if word_1 in dick.keys():
             dick[word_1].append(word_2)
-             
+            
         else:
             dick[word_1] = [word_2]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 '''
 
     message = update.message.text                                      
