@@ -30,15 +30,16 @@ def replace_row(list_to_replace):
         str_to_replace = split_list(list_to_replace)
         print(str_to_replace)
         word_1_to_find = str_to_replace[0]
+        print(word_1_to_find)
         search = "SELECT * FROM dickdump WHERE word_1=?"
         cursor.execute(search, [(word_1_to_find)])
-        search_result = (cursor.fetchone()[0])
+        search_result = (cursor.fetchone())
         if search_result == word_1_to_find:
                 print('найдено')
         else:
                 print('не найдено')
 
-replace_row(mushroom_to_add)
+replace_row(animal_to_replace)
 
 
 
