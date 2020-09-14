@@ -20,17 +20,12 @@ def dicktionary(update, context):
             yield (words_in_message[i], words_in_message[i + 1])
 
     pair_of_words = make_pairs(words_in_message)
-
+    
     for word_1, word_2 in pair_of_words:
-        sql = "SELECT * FROM dickdump WHERE word_1"
+        search = "SELECT * FROM dickdump WHERE word_1=?"
+        cursor.execute(search, [(word_1_to_find)])
+        search_result = (cursor.fetchone())
         
-        if word_1 in dick.keys():
-            dick[word_1].append(word_2)
-            
-        else:
-            dick[word_1] = [word_2]
-
-
 
 
 

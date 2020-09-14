@@ -11,13 +11,20 @@ cursor = conn.cursor()
 cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(word_1 text, word_2 text)""")
 
 
-def split_list(list_to_split):
-        key, value = [list_to_split[0],' , '.join(list_to_split[1:])]
+def list_to_tuple(list_to_tuple_var):
+        key, value = [list_to_tuple_var[0],' , '.join(list_to_tuple_var[1:])]       
         return key, value
 
+list_to_tuple(animal_to_replace)
+
+
+def tulpe_to_list(string_to_list = str):
+        ready_string = string_to_list.replace
+
+
         
-def add_to_database(list_to_add):
-        str_to_add = split_list(list_to_add)
+def add_to_database(list_to_add_var):
+        str_to_add = list_to_tuple(list_to_add_var)
         cursor.execute("INSERT INTO dickdump VALUES (?,?)", (str_to_add[0], str_to_add[1]))
         conn.commit()
 
@@ -27,17 +34,24 @@ def add_to_database(list_to_add):
 
 
 def replace_row(list_to_replace):
-        str_to_replace = split_list(list_to_replace)
+        str_to_replace = list_to_tuple(list_to_replace)
         print(str_to_replace)
         word_1_to_find = str_to_replace[0]
         print(word_1_to_find)
         search = "SELECT * FROM dickdump WHERE word_1=?"
         cursor.execute(search, [(word_1_to_find)])
-        search_result = (cursor.fetchone())
+        search_result = (cursor.fetchone()[0])
         if search_result == word_1_to_find:
-                print('найдено')
+                print('совпадение обнаружено')
+                print(search_result)
         else:
-                print('не найдено')
+                print('совпадений не найдено')
+                
+
+def mergelists(list_from_dick, list_to_replace):
+        for word_2 in list_to_replace[1:]:
+                if word_2 not in list_from_dick[1:]:
+                        list
 
 replace_row(animal_to_replace)
 
