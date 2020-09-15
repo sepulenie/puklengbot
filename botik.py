@@ -41,7 +41,7 @@ def add_to_dick(words_in_message):
                 cursor.execute("UPDATE dickdump SET word_2=? WHERE word_1=?", (word_2, word_1))
     conn.commit()
 
-def dicktionary(update, context):
+def message_handler(update, context):
     message = update.message.text.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
     words_in_message = message.split()
     add_to_dick(words_in_message)
@@ -101,8 +101,8 @@ def cp77(update, context):
     update.message.reply_text(result)
 
 #def get_kub(update, context):
-    random_kubik = kubik_path + random.choice([kub for kub in os.listdir(kubik_path) if os.path.isfile(os.path.join(kubik_path, kub))])
-    update.message.reply_photo(photo = open(random_kubik , 'rb'))
+    #random_kubik = kubik_path + random.choice([kub for kub in os.listdir(kubik_path) if os.path.isfile(os.path.join(kubik_path, kub))])
+    #update.message.reply_photo(photo = open(random_kubik , 'rb'))
 
 
 def main():
@@ -113,7 +113,7 @@ def main():
     #updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, pizda)) #простейшее да-пизда
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, sun)) # приветствие при добавлении в чат
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.left_chat_member, leave)) # стикер при удалении из чата
-    updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, dicktionary)) #добавляет слово из чата в словарь
+    updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, message_handler)) #добавляет слово из чата в словарь
     #updater.dispatcher.add_handler(CommandHandler('markov', markov)) #говорит рандомную хуйню
     updater.start_polling()
     updater.idle()
