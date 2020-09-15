@@ -11,88 +11,44 @@ cursor = conn.cursor()
 cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(word_1 text, word_2 text)""")
 
 
-def dicktionary(update, context):
-    message = update.message.text.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ')
-    words_in_message = message.split()
-
-    def make_pairs(words_in_message):                                   
-        for i in range(len(words_in_message)- 1):
+def make_pairs(words_in_message):
+    for i in range(len(words_in_message)- 1):
             yield (words_in_message[i], words_in_message[i + 1])
 
+def add_to_dick(words_in_message):
     pair_of_words = make_pairs(words_in_message)
-    
     for word_1, word_2 in pair_of_words:
+        #print('пара - ', word_1, word_2)
         search = "SELECT * FROM dickdump WHERE word_1=?"
-        cursor.execute(search, [(word_1_to_find)])
+        cursor.execute(search, [(word_1)])
         search_result = (cursor.fetchone())
+        try:
+            print('ключ - ', search_result[0])
+        except TypeError:
+            print('ключ не найден')
+        #print('ключ и значение - ', search_result)
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''
-
-    message = update.message.text                                      
-    words_in_message = message.split()                                  
-    dickdump = csv.writer(open('dickdump.csv', 'w'))
-    def make_pairs(words_in_message):                                   
-        for i in range(len(words_in_message)- 1):
-            yield (words_in_message[i], words_in_message[i + 1])
-
-    pair_of_words = make_pairs(words_in_message)
-
-    for word_1, word_2 in pair_of_words: 
-        if word_1 in dick.keys():
-            dick[word_1].append(word_2)
+        if search_result == None:
+            cursor.execute("INSERT INTO dickdump VALUES (?,?)", (word_1, word_2))
+            #print(word_1, '- не найдено')
         else:
-            dick[word_1] = [word_2]
-    for word_1, word_2 in dick.items():
-        dickdump.writerow([word_1,word_2])
-       
+            if word_2 in search_result[1]:
+                #print('слово {} уже в паре'.format(word_2))
+                pass
+            else:
+                word_2 = search_result[1] +','+ word_2
+                #print(word_2)
+                cursor.execute("UPDATE dickdump SET word_2=? WHERE word_1=?", (word_2, word_1))
+    conn.commit()
 
-def markov(update, context):
-    dickdict = {}
-    for key, val in csv.reader(open('dickdump.csv')):
-        dickdict[key] = val
-    first_word = random.choice(list(dickdict.keys()))
-    print(dickdict)
-    while first_word[0].isupper() == False:
-        first_word = random.choice(list(dickdict.keys()))
-    else:
-        chain = [first_word]
-        n_words = random.randint(1, 30)
-        first_word = random.choice(list(dickdict.keys()))
-        for i in range(n_words):
-            chain.append(random.choice(dickdict[chain[-i]]))
-        markov_result = (' '.join(chain))
-        update.message.reply_text(markov_result.replace(' , ', ', ').replace(' . ','. ').replace(' -','-'))
+def dicktionary(update, context):
+    message = update.message.text.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
+    words_in_message = message.split()
+    add_to_dick(words_in_message)
 
-'''
 def hello(update, context):
     update.message.reply_text(
         'Hello, {},\nмы находимся в чате под названием "{}"'.format(update.message.from_user.first_name, update.message.chat.title))
-
 
 def sun(update, context):
     update.message.reply_text('Под этим солнцем и небом мы тепло приветствуем тебя!')
@@ -101,10 +57,10 @@ def leave(update, context):
     update.message.reply_sticker("CAACAgIAAxkBAAEBRJRfSOutTFb77ZdoE6Fe4t09Sqi9cgACYAAD3N3lFSPHyb0-_G4ZGwQ")
 
 #def pizda(update,context):
-#   a = update.message.text.lower()
-#   if a == 'да':
+#   da = update.message.text.lower()
+#   if da == 'да':
 #       update.message.reply_text('Пизда')
-#   elif a=='пизда':
+#   elif da=='пизда':
 #       update.message.reply_text('Да')
     
 def cp77(update, context):

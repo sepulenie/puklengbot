@@ -30,7 +30,7 @@ def add_to_database(list_to_add_var):
 
 #add_to_database(fish)
 #add_to_database(animal)
-#add_to_database(plant)
+#add_to_database(["одна", "рыба"])
 
 
 def replace_row(list_to_replace):
@@ -53,7 +53,8 @@ def mergelists(list_from_dick, list_to_replace):
                 if word_2 not in list_from_dick[1:]:
                         list
 
-replace_row(animal_to_replace)
+for row in cursor.execute("SELECT * FROM dickdump ORDER BY word_1"):
+    print(row)
 
 
 
