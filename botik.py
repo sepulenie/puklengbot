@@ -18,14 +18,14 @@ def make_pairs(words_in_message):
 def add_to_dick(words_in_message):
     pair_of_words = make_pairs(words_in_message)
     for word_1, word_2 in pair_of_words:
-        #print('пара - ', word_1, word_2)
+        print('пара - ', word_1, word_2)
         search = "SELECT * FROM dickdump WHERE word_1=?"
         cursor.execute(search, [(word_1)])
         search_result = (cursor.fetchone())
-        try:
-            print('ключ - ', search_result[0])
-        except TypeError:
-            print('ключ не найден')
+        #try:
+        #   print('ключ - ', search_result[0])
+        #except TypeError:
+        #   print('ключ не найден')
         #print('ключ и значение - ', search_result)
         
         if search_result == None:
@@ -44,6 +44,7 @@ def add_to_dick(words_in_message):
 def message_handler(update, context):
     message = update.message.text.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
     words_in_message = message.split()
+    print(words_in_message)
     add_to_dick(words_in_message)
 
 def hello(update, context):
