@@ -2,12 +2,35 @@ import sqlite3, random
 
 conn = sqlite3.connect("dickdump.db")
 cursor = conn.cursor()
-cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(word_1 text, word_2 text)""")
+cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(word_0 text, word_1 text)""")
+
+'''
+fish = ['одна', ['рыба','форель','хамса','акула']]
+print(fish[0], fish[1])
+cursor.execute("INSERT INTO dickdump VALUES (?,?)", (fish[0], repr(fish[1])))
+conn.commit()
 
 
-message = 'и за ним пошла одна или две, но всё же'
 
 
+for row in cursor.execute("SELECT * FROM dickdump"):
+   split = row
+   print(split)
+'''
+word_0 = 'одна'
+word_1 = 'кишка'
+
+search = "SELECT * FROM dickdump WHERE word_0=?"
+cursor.execute(search, [(word_0)])
+search_result = (cursor.fetchone())
+search_result_word_1 = eval(search_result[1])
+print(search_result_word_1)
+word_0 = word_0
+search_result_word_1.append(word_0)
+print(search_result_word_1)
+
+
+'''
 def next_word(first_word):
     search = "SELECT word_2 FROM dickdump WHERE word_1=?"
     cursor.execute(search, [(first_word)])
@@ -37,7 +60,6 @@ chain.append(next_word_var)
 first_word = next_word_var
 print('получилось - ', chain)
 
-'''
 n_words = 5
 
 for n in range(n_words):

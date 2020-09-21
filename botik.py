@@ -8,7 +8,7 @@ kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
 dick = {}
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
-cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(word_1 text, word_2 text)""")
+cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(word_0 text, word_1 text)""")
 
 
 def make_pairs(words_in_message):
@@ -17,28 +17,31 @@ def make_pairs(words_in_message):
 
 def add_to_dick(words_in_message):
     pair_of_words = make_pairs(words_in_message)
-    for word_1, word_2 in pair_of_words:
-        print('пара - ', word_1, word_2)
-        search = "SELECT * FROM dickdump WHERE word_1=?"
-        cursor.execute(search, [(word_1)])
+    for word_0, word_1 in pair_of_words:
+        #print('пара - ', word_0, word_1)
+        search = "SELECT * FROM dickdump WHERE word_0=?"
+        cursor.execute(search, [(word_0)])
         search_result = (cursor.fetchone())
-        #try:
-        #   print('ключ - ', search_result[0])
-        #except TypeError:
-        #   print('ключ не найден')
-        #print('ключ и значение - ', search_result)
+        search_result_word_1 = eval(search_result[1])
+        try:
+           print('ключ - ', search_result[0])
+        except TypeError:
+           print('ключ не найден')
+        print('ключ и значение - ', search_result)
         
         if search_result == None:
-            cursor.execute("INSERT INTO dickdump VALUES (?,?)", (word_1, word_2))
+            word_1 = [word_1]
+            word_1 = repr(word_1)
+            cursor.execute("INSERT INTO dickdump VALUES (?,?)", (word_0, word_1))
             #print(word_1, '- не найдено')
         else:
-            if word_2 in search_result[1]:
+            if word_1 in search_result[1]:
                 #print('слово {} уже в паре'.format(word_2))
                 pass
             else:
-                word_2 = search_result[1] +','+ word_2
+                word_1 = search_result_word_1.append(word_1)
                 #print(word_2)
-                cursor.execute("UPDATE dickdump SET word_2=? WHERE word_1=?", (word_2, word_1))
+                cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=?", (word_1, word_0))
     conn.commit()
 
 def message_handler(update, context):
@@ -46,6 +49,13 @@ def message_handler(update, context):
     words_in_message = message.split()
     print(words_in_message)
     add_to_dick(words_in_message)
+
+
+
+
+
+
+
 
 def hello(update, context):
     update.message.reply_text(
