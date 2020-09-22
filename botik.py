@@ -18,36 +18,44 @@ def make_pairs(words_in_message):
 def add_to_dick(words_in_message):
     pair_of_words = make_pairs(words_in_message)
     for word_0, word_1 in pair_of_words:
-        #print('пара - ', word_0, word_1)
         search = "SELECT * FROM dickdump WHERE word_0=?"
         cursor.execute(search, [(word_0)])
         search_result = (cursor.fetchone())
-        search_result_word_1 = eval(search_result[1])
-        try:
-           print('ключ - ', search_result[0])
-        except TypeError:
-           print('ключ не найден')
-        print('ключ и значение - ', search_result)
-        
         if search_result == None:
-            word_1 = [word_1]
-            word_1 = repr(word_1)
-            cursor.execute("INSERT INTO dickdump VALUES (?,?)", (word_0, word_1))
-            #print(word_1, '- не найдено')
+            cursor.execute("INSERT INTO dickdump VALUES (?,?)", (word_0, repr([word_1])))
+            print(word_1, '- добавлено')
         else:
-            if word_1 in search_result[1]:
-                #print('слово {} уже в паре'.format(word_2))
+            search_result_word_0 = search_result[0]
+            search_result_word_1 = eval(search_result[1])
+            if word_1 in search_result_word_1:
+                print('слово {} уже в паре'.format(word_1))
                 pass
             else:
-                word_1 = search_result_word_1.append(word_1)
-                #print(word_2)
-                cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=?", (word_1, word_0))
+                search_result_word_1.append(word_1)
+                cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=?", (repr(search_result_word_1), search_result_word_0))
     conn.commit()
-
+'''
+        try:
+           print('ключ - ', search_result_word_0)
+        except TypeError:
+           print('ключ не найден')
+        print('значение - ', search_result_word_1)
+    
+        
+        else:
+            search_result_word_0 = search_result[0]
+            search_result_word_1 = eval(search_result[1])
+            if word_1 in search_result_word_1:
+                print('слово {} уже в паре'.format(word_1))
+                pass
+            else:
+                search_result_word_1.append(word_1)
+                cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=?", (repr(search_result_word_1), word_0))
+    conn.commit()
+'''
 def message_handler(update, context):
     message = update.message.text.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
     words_in_message = message.split()
-    print(words_in_message)
     add_to_dick(words_in_message)
 
 

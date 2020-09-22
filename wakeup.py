@@ -9,28 +9,28 @@ fish = ['одна', ['рыба','форель','хамса','акула']]
 print(fish[0], fish[1])
 cursor.execute("INSERT INTO dickdump VALUES (?,?)", (fish[0], repr(fish[1])))
 conn.commit()
+'''
 
 
-
-
+'''
 for row in cursor.execute("SELECT * FROM dickdump"):
    split = row
    print(split)
-'''
+
 word_0 = 'одна'
-word_1 = 'кишка'
+word_1 = 'чушка'
 
-search = "SELECT * FROM dickdump WHERE word_0=?"
+search = "SELECT word_1 FROM dickdump WHERE word_0=?"
 cursor.execute(search, [(word_0)])
-search_result = (cursor.fetchone())
-search_result_word_1 = eval(search_result[1])
-print(search_result_word_1)
-word_0 = word_0
-search_result_word_1.append(word_0)
-print(search_result_word_1)
-
-
+search_result = eval(cursor.fetchone()[0])
+search_result.append(word_1)
+cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=?", (repr(search_result), word_0))
+conn.commit()
 '''
+
+
+
+
 def next_word(first_word):
     search = "SELECT word_2 FROM dickdump WHERE word_1=?"
     cursor.execute(search, [(first_word)])
@@ -44,7 +44,7 @@ def next_word(first_word):
     return search_result
 
 
-
+message = 'одна рыба'
 message = message.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
 words_in_message = message.split()
 first_word = random.choice(words_in_message)
@@ -68,7 +68,7 @@ for n in range(n_words):
     first_word = next_word_var
 
 print(' '.join(chain).replace(' , ', ', ').replace(' . ','. ').replace(' - ','-').replace(' ? ','? ').replace(' ! ','! ').replace(' ; ','; '))
-'''
+
 
 
 
