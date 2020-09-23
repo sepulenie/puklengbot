@@ -20,7 +20,7 @@ def next_word(first_word):
         return(search_result_word_1)
 
 
-message = 'одна рыба в нашей стране, по мне не нужна!'
+message = 'одна рыба в нашей стране, по мне не нужна! Ну либо так либо не так потому что уходить в страну или выходить'
 message = message.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
 words_in_message = message.split()
 random_index = random.randrange(0, (len(words_in_message)-1))
@@ -34,16 +34,16 @@ while first_word.isalpha() == False:
 chain = [first_word]
 next_word_var = next_word(first_word)
 n_words = 3
-for i in range(3):
+for i in range(5):
     next_word_var = next_word(first_word)
     if next_word_var == None:
         pass
     else:
         chain.append(next_word_var)
         first_word = next_word_var
-print(' '.join(chain))
-        
-
+exit_message = ' '.join(chain)
+exit_message = exit_message.replace(" ,", ", ").replace(" .",". ").replace(" -","-").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ")
+print(exit_message)
 
 
 
