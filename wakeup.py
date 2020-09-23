@@ -3,59 +3,60 @@ import sqlite3, random
 conn = sqlite3.connect("dickdump.db")
 cursor = conn.cursor()
 cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(word_0 text, word_1 text)""")
-
-'''
-fish = ['одна', ['рыба','форель','хамса','акула']]
-print(fish[0], fish[1])
-cursor.execute("INSERT INTO dickdump VALUES (?,?)", (fish[0], repr(fish[1])))
-conn.commit()
-'''
-
-
 '''
 for row in cursor.execute("SELECT * FROM dickdump"):
    split = row
    print(split)
-
-word_0 = 'одна'
-word_1 = 'чушка'
-
-search = "SELECT word_1 FROM dickdump WHERE word_0=?"
-cursor.execute(search, [(word_0)])
-search_result = eval(cursor.fetchone()[0])
-search_result.append(word_1)
-cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=?", (repr(search_result), word_0))
-conn.commit()
 '''
 
-
-
-
 def next_word(first_word):
-    search = "SELECT word_2 FROM dickdump WHERE word_1=?"
+    search = "SELECT word_1 FROM dickdump WHERE word_0=?"
     cursor.execute(search, [(first_word)])
     search_result = (cursor.fetchone())
-    print('список возможных слов - ', search_result)
-    while search_result == None:
-        return 'None'
-    
-    search_result = random.choice(search_result[0].split(','))
-    print('следующее слово - ', search_result)
-    return search_result
+    if search_result == None:
+        return None
+    else:
+        search_result_word_1 = random.choice(eval(search_result[0]))
+        return(search_result_word_1)
 
 
-message = 'одна рыба'
+message = 'одна рыба в нашей стране, по мне не нужна!'
 message = message.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
 words_in_message = message.split()
-first_word = random.choice(words_in_message)
+random_index = random.randrange(0, (len(words_in_message)-1))
+first_word = words_in_message[random_index]
+
 while first_word.isalpha() == False:
-    first_word = random.choice(words_in_message)
-else:
-    print('первое слово - ', first_word)
-    pass
+    words_in_message.pop(random_index)
+    random_index = random.randrange(0, (len(words_in_message)-1))
+    first_word = words_in_message[random_index]
+
 chain = [first_word]
+next_word_var = next_word(first_word)
+n_words = 3
+for i in range(3):
+    next_word_var = next_word(first_word)
+    if next_word_var == None:
+        pass
+    else:
+        chain.append(next_word_var)
+        first_word = next_word_var
+print(' '.join(chain))
+        
+
+
+
+
+'''
 
 next_word_var = next_word(first_word)
+while next_word_var == None:
+    words_in_message.pop(words_in_message.index(first_word))
+    next_word_var = next_word(first_word)
+
+
+
+
 chain.append(next_word_var)
 first_word = next_word_var
 print('получилось - ', chain)
@@ -68,42 +69,4 @@ for n in range(n_words):
     first_word = next_word_var
 
 print(' '.join(chain).replace(' , ', ', ').replace(' . ','. ').replace(' - ','-').replace(' ? ','? ').replace(' ! ','! ').replace(' ; ','; '))
-
-
-
-
-
-
-
-
-
-
-
-
-
 '''
-for row in cursor.execute("SELECT * FROM dickdump"):
-   split = row
-   print(split)
-'''
-
-
-
-'''
-def markov(update, context):
-    dickdict = {}
-    for key, val in csv.reader(open('dickdump.csv')):
-        dickdict[key] = val
-    first_word = random.choice(list(dickdict.keys()))
-    print(dickdict)
-    while first_word[0].isupper() == False:
-        first_word = random.choice(list(dickdict.keys()))
-    else:
-        chain = [first_word]
-        n_words = random.randint(1, 30)
-        first_word = random.choice(list(dickdict.keys()))
-        for i in range(n_words):
-            chain.append(random.choice(dickdict[chain[-i]]))
-        markov_result = (' '.join(chain))
-        update.message.reply_text(markov_result.replace(' , ', ', ').replace(' . ','. ').replace(' -','-'))
-        '''
