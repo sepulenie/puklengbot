@@ -20,7 +20,7 @@ def next_word(first_word):
         return(search_result_word_1)
 
 
-message = 'одна рыба в нашей стране, по мне не нужна! Ну либо так либо не так потому что уходить в страну или выходить'
+message = 'Дорогой Мартин или вы или я но получится так, что не вы и не я'
 message = message.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
 words_in_message = message.split()
 random_index = random.randrange(0, (len(words_in_message)-1))
@@ -33,8 +33,8 @@ while first_word.isalpha() == False:
 
 chain = [first_word]
 next_word_var = next_word(first_word)
-n_words = 3
-for i in range(5):
+n_words = random.randint(1, 60)
+for i in range(n_words):
     next_word_var = next_word(first_word)
     if next_word_var == None:
         pass
@@ -42,31 +42,5 @@ for i in range(5):
         chain.append(next_word_var)
         first_word = next_word_var
 exit_message = ' '.join(chain)
-exit_message = exit_message.replace(" ,", ", ").replace(" .",". ").replace(" -","-").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ")
+exit_message = exit_message.replace(" ,", ", ").replace(" .",". ").replace(" -"," - ").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ")
 print(exit_message)
-
-
-
-'''
-
-next_word_var = next_word(first_word)
-while next_word_var == None:
-    words_in_message.pop(words_in_message.index(first_word))
-    next_word_var = next_word(first_word)
-
-
-
-
-chain.append(next_word_var)
-first_word = next_word_var
-print('получилось - ', chain)
-
-n_words = 5
-
-for n in range(n_words):
-    next_word_var = next_word(first_word)
-    chain.append(next_word_var)
-    first_word = next_word_var
-
-print(' '.join(chain).replace(' , ', ', ').replace(' . ','. ').replace(' - ','-').replace(' ? ','? ').replace(' ! ','! ').replace(' ; ','; '))
-'''

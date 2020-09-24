@@ -23,12 +23,12 @@ def add_to_dick(words_in_message):
         search_result = (cursor.fetchone())
         if search_result == None:
             cursor.execute("INSERT INTO dickdump VALUES (?,?)", (word_0, repr([word_1])))
-            print(word_1, '- добавлено')
+            #print(word_1, '- добавлено')
         else:
             search_result_word_0 = search_result[0]
             search_result_word_1 = eval(search_result[1])
             if word_1 in search_result_word_1:
-                print('слово {} уже в паре'.format(word_1))
+                #print('слово {} уже в паре'.format(word_1))
                 pass
             else:
                 search_result_word_1.append(word_1)
