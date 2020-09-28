@@ -1,5 +1,5 @@
 '''
-ver. 0.0.6
+ver. 0.0.7
 '''
 import os, datetime, random, numpy, sqlite3
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
@@ -50,7 +50,7 @@ def next_word(first_word, chat_id):
     if search_result == None:
         return None
     else:
-        search_result_word_1 = random.choice(eval(search_result[1]))
+        search_result_word_1 = random.choice(eval(search_result[0]))
         return(search_result_word_1)
 
 
@@ -59,7 +59,6 @@ def message_handler(update, context):
     words_in_message = message.split()
     chat_id = update.message.chat.id
     add_to_dick(words_in_message, chat_id)
-    '''
     if random.random() < markov_chance/100:
         random_index = random.randrange(0, (len(words_in_message)))
         first_word = words_in_message[random_index]
@@ -80,7 +79,6 @@ def message_handler(update, context):
         exit_message = ' '.join(chain)
         exit_message = exit_message.replace(" ,", ", ").replace(" .",". ").replace(" -"," - ").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ")
         update.message.reply_text(exit_message)
-        '''
 
 def hello(update, context):
     update.message.reply_text(
