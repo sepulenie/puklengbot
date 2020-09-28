@@ -1,3 +1,6 @@
+'''
+ver. 0.0.4
+'''
 import os, datetime, random, numpy, sqlite3
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
@@ -8,7 +11,14 @@ markov_chance = 20
 dick = {}
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
-cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(word_0 text, word_1 text)""")
+#cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(word_0 text, word_1 text)""")
+
+
+def start(update, context):
+    chat_id = update.message.chat.id
+    update.message.reply_text(chat_id)
+    create = """CREATE TABLE IF NOT EXISTS ?(word_0 text, word_1 text)"""
+    cursor.execute(create, chat_id)
 
 
 def make_pairs(words_in_message):
@@ -77,6 +87,8 @@ def hello(update, context):
         'Hello, {},\nмы находимся в чате под названием "{}"'.format(update.message.from_user.first_name, update.message.chat.title))
 
 
+
+
 def sun(update, context):
     update.message.reply_text('Под этим солнцем и небом мы тепло приветствуем тебя!')
 
@@ -130,6 +142,7 @@ def get_kub(update, context):
 def main():
     updater = Updater(token, use_context=True)
     updater.dispatcher.add_handler(CommandHandler('hello', hello)) #говорит "привет"
+    updater.dispatcher.add_handler(CommandHandler('start', start)) #создает базу словаря
     updater.dispatcher.add_handler(CommandHandler('cp77', cp77))    #отсчитывает время до cp77
     updater.dispatcher.add_handler(CommandHandler('get_kub', get_kub)) # показать кубика из папки
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, sun)) # приветствие при добавлении в чат
