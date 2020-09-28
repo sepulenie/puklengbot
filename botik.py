@@ -1,9 +1,12 @@
 '''
-ver. 0.0.7
+ver. 0.0.8
 '''
-import os, datetime, random, numpy, sqlite3
+import os, datetime, random, numpy, sqlite3, logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
+
+logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+
 
 kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
 # kubik_path = r"D:/Projects/Python/puklengbot/kubik/"
