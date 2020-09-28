@@ -4,7 +4,7 @@ from teleconfig import token
 
 kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
 # kubik_path = r"D:/Projects/Python/puklengbot/kubik/"
-
+markov_chance = 20
 dick = {}
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
@@ -15,6 +15,7 @@ def make_pairs(words_in_message):
     for i in range(len(words_in_message)- 1):
             yield (words_in_message[i], words_in_message[i + 1])
 
+
 def add_to_dick(words_in_message):
     pair_of_words = make_pairs(words_in_message)
     for word_0, word_1 in pair_of_words:
@@ -23,47 +24,67 @@ def add_to_dick(words_in_message):
         search_result = (cursor.fetchone())
         if search_result == None:
             cursor.execute("INSERT INTO dickdump VALUES (?,?)", (word_0, repr([word_1])))
-            #print(word_1, '- добавлено')
         else:
             search_result_word_0 = search_result[0]
             search_result_word_1 = eval(search_result[1])
             if word_1 in search_result_word_1:
-                #print('слово {} уже в паре'.format(word_1))
                 pass
             else:
                 search_result_word_1.append(word_1)
                 cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=?", (repr(search_result_word_1), search_result_word_0))
     conn.commit()
 
+
+def next_word(first_word):
+    search = "SELECT word_1 FROM dickdump WHERE word_0=?"
+    cursor.execute(search, [(first_word)])
+    search_result = (cursor.fetchone())
+    if search_result == None:
+        return None
+    else:
+        search_result_word_1 = random.choice(eval(search_result[0]))
+        return(search_result_word_1)
+
+
 def message_handler(update, context):
     message = update.message.text.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
     words_in_message = message.split()
     add_to_dick(words_in_message)
-
-
-
-
-
-
+    if random.random() < markov_chance/100:
+        random_index = random.randrange(0, (len(words_in_message)))
+        first_word = words_in_message[random_index]
+        while first_word.isalpha() == False:
+            words_in_message.pop(random_index)
+            random_index = random.randrange(0, (len(words_in_message)))
+            first_word = words_in_message[random_index]
+        chain = [first_word]
+        next_word_var = next_word(first_word)
+        n_words = random.randint(1, 30)
+        for i in range(n_words):
+            next_word_var = next_word(first_word)
+            if next_word_var == None:
+                pass
+            else:
+                chain.append(next_word_var)
+                first_word = next_word_var
+        exit_message = ' '.join(chain)
+        exit_message = exit_message.replace(" ,", ", ").replace(" .",". ").replace(" -"," - ").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ")
+        update.message.reply_text(exit_message)
 
 
 def hello(update, context):
     update.message.reply_text(
         'Hello, {},\nмы находимся в чате под названием "{}"'.format(update.message.from_user.first_name, update.message.chat.title))
 
+
 def sun(update, context):
     update.message.reply_text('Под этим солнцем и небом мы тепло приветствуем тебя!')
+
 
 def leave(update, context):
     update.message.reply_sticker("CAACAgIAAxkBAAEBRJRfSOutTFb77ZdoE6Fe4t09Sqi9cgACYAAD3N3lFSPHyb0-_G4ZGwQ")
 
-#def pizda(update,context):
-#   da = update.message.text.lower()
-#   if da == 'да':
-#       update.message.reply_text('Пизда')
-#   elif da=='пизда':
-#       update.message.reply_text('Да')
-    
+
 def cp77(update, context):
     def truedays(days):
         day = str(days)
@@ -101,24 +122,21 @@ def cp77(update, context):
     result = "до выхода Cyberpunk 2077 осталось: {0}, {1}, {2}".format(td, th, tm)
     update.message.reply_text(result)
 
-#def get_kub(update, context):
-    #random_kubik = kubik_path + random.choice([kub for kub in os.listdir(kubik_path) if os.path.isfile(os.path.join(kubik_path, kub))])
-    #update.message.reply_photo(photo = open(random_kubik , 'rb'))
+def get_kub(update, context):
+    random_kubik = kubik_path + random.choice([kub for kub in os.listdir(kubik_path) if os.path.isfile(os.path.join(kubik_path, kub))])
+    update.message.reply_photo(photo = open(random_kubik , 'rb'))
 
 
 def main():
     updater = Updater(token, use_context=True)
     updater.dispatcher.add_handler(CommandHandler('hello', hello)) #говорит "привет"
     updater.dispatcher.add_handler(CommandHandler('cp77', cp77))    #отсчитывает время до cp77
-    #updater.dispatcher.add_handler(CommandHandler('get_kub', get_kub)) # показать кубика из папки
-    #updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, pizda)) #простейшее да-пизда
+    updater.dispatcher.add_handler(CommandHandler('get_kub', get_kub)) # показать кубика из папки
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, sun)) # приветствие при добавлении в чат
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.left_chat_member, leave)) # стикер при удалении из чата
     updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, message_handler)) #добавляет слово из чата в словарь
-    #updater.dispatcher.add_handler(CommandHandler('markov', markov)) #говорит рандомную хуйню
     updater.start_polling()
     updater.idle()
-
 
 if __name__ == '__main__':
     main()

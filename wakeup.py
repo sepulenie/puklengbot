@@ -20,7 +20,7 @@ def next_word(first_word):
         return(search_result_word_1)
 
 
-message = 'Дорогой Мартин или вы или я но получится так, что не вы и не я'
+message = 'угорел по'
 message = message.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
 words_in_message = message.split()
 random_index = random.randrange(0, (len(words_in_message)-1))
@@ -33,7 +33,7 @@ while first_word.isalpha() == False:
 
 chain = [first_word]
 next_word_var = next_word(first_word)
-n_words = random.randint(1, 60)
+n_words = random.randint(1, 30)
 for i in range(n_words):
     next_word_var = next_word(first_word)
     if next_word_var == None:
