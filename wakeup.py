@@ -2,13 +2,24 @@ import sqlite3, random
 
 conn = sqlite3.connect("dickdump.db")
 cursor = conn.cursor()
-cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(word_0 text, word_1 text)""")
+cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(chat_id integer, word_0 text, word_1 text)""")
+
+
+
+
+
+'''
+word_0 = 'sdfsdf'
+word_1 = ['232355555']
+cursor.execute("INSERT INTO dickdump VALUES (?,?,?)", (-875675346754, word_0, repr([word_1])))
+conn.commit()
 '''
 for row in cursor.execute("SELECT * FROM dickdump"):
    split = row
    print(split)
-'''
 
+
+'''
 def next_word(first_word):
     search = "SELECT word_1 FROM dickdump WHERE word_0=?"
     cursor.execute(search, [(first_word)])
@@ -44,3 +55,4 @@ for i in range(n_words):
 exit_message = ' '.join(chain)
 exit_message = exit_message.replace(" ,", ", ").replace(" .",". ").replace(" -"," - ").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ")
 print(exit_message)
+'''

@@ -1,5 +1,5 @@
 '''
-ver. 0.0.4
+ver. 0.0.6
 '''
 import os, datetime, random, numpy, sqlite3
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
@@ -11,32 +11,30 @@ markov_chance = 20
 dick = {}
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
-#cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(word_0 text, word_1 text)""")
+cursor.execute("""CREATE TABLE IF NOT EXISTS dickdump(chat_id integer, word_0 text, word_1 text)""")
 
 
 def start(update, context):
     chat_id = update.message.chat.id
     update.message.reply_text(chat_id)
-    create = """CREATE TABLE IF NOT EXISTS ?(word_0 text, word_1 text)"""
-    cursor.execute(create, chat_id)
-
+    cursor.execute("INSERT INTO dickdump VALUES (?,?,?)", (chat_id, 'Добрый', repr(['день'])))
 
 def make_pairs(words_in_message):
     for i in range(len(words_in_message)- 1):
             yield (words_in_message[i], words_in_message[i + 1])
 
 
-def add_to_dick(words_in_message):
+def add_to_dick(words_in_message, chat_id):
     pair_of_words = make_pairs(words_in_message)
     for word_0, word_1 in pair_of_words:
-        search = "SELECT * FROM dickdump WHERE word_0=?"
-        cursor.execute(search, [(word_0)])
+        search = "SELECT * FROM dickdump WHERE chat_id=? AND word_0=?"
+        cursor.execute(search, [(chat_id), (word_0)])
         search_result = (cursor.fetchone())
         if search_result == None:
-            cursor.execute("INSERT INTO dickdump VALUES (?,?)", (word_0, repr([word_1])))
+            cursor.execute("INSERT INTO dickdump VALUES (?,?,?)", (chat_id, word_0, repr([word_1])))
         else:
-            search_result_word_0 = search_result[0]
-            search_result_word_1 = eval(search_result[1])
+            search_result_word_0 = search_result[1]
+            search_result_word_1 = eval(search_result[2])
             if word_1 in search_result_word_1:
                 pass
             else:
@@ -45,21 +43,23 @@ def add_to_dick(words_in_message):
     conn.commit()
 
 
-def next_word(first_word):
-    search = "SELECT word_1 FROM dickdump WHERE word_0=?"
-    cursor.execute(search, [(first_word)])
+def next_word(first_word, chat_id):
+    search = "SELECT word_1 FROM dickdump WHERE chat_id=? AND word_0=?"
+    cursor.execute(search, [(chat_id), (first_word)])
     search_result = (cursor.fetchone())
     if search_result == None:
         return None
     else:
-        search_result_word_1 = random.choice(eval(search_result[0]))
+        search_result_word_1 = random.choice(eval(search_result[1]))
         return(search_result_word_1)
 
 
 def message_handler(update, context):
     message = update.message.text.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
     words_in_message = message.split()
-    add_to_dick(words_in_message)
+    chat_id = update.message.chat.id
+    add_to_dick(words_in_message, chat_id)
+    '''
     if random.random() < markov_chance/100:
         random_index = random.randrange(0, (len(words_in_message)))
         first_word = words_in_message[random_index]
@@ -68,10 +68,10 @@ def message_handler(update, context):
             random_index = random.randrange(0, (len(words_in_message)))
             first_word = words_in_message[random_index]
         chain = [first_word]
-        next_word_var = next_word(first_word)
+        next_word_var = next_word(first_word, chat_id)
         n_words = random.randint(1, 30)
         for i in range(n_words):
-            next_word_var = next_word(first_word)
+            next_word_var = next_word(first_word, chat_id)
             if next_word_var == None:
                 pass
             else:
@@ -80,7 +80,7 @@ def message_handler(update, context):
         exit_message = ' '.join(chain)
         exit_message = exit_message.replace(" ,", ", ").replace(" .",". ").replace(" -"," - ").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ")
         update.message.reply_text(exit_message)
-
+        '''
 
 def hello(update, context):
     update.message.reply_text(
