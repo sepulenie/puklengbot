@@ -1,7 +1,7 @@
 '''
 ver. 0.0.8
 '''
-import os, datetime, random, numpy, sqlite3, logging
+import os, datetime, random, sqlite3, logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
 
@@ -10,7 +10,7 @@ logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(level
 
 kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
 # kubik_path = r"D:/Projects/Python/puklengbot/kubik/"
-markov_chance = 20
+markov_chance = 3
 dick = {}
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
