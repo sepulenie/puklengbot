@@ -1,16 +1,16 @@
 '''
-ver. 0.0.8
+ver. 0.0.9
 '''
-import os, datetime, random, sqlite3, logging
+import os, datetime, random, sqlite3, logging, urllib3
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
 
 logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
-
+https = urllib3.PoolManager()
+dog_url = https.request('GET','https://media.giphy.com/media/F65M9crzsQe2U3TpaI/giphy.gif')
 kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
-# kubik_path = r"D:/Projects/Python/puklengbot/kubik/"
-markov_chance = 3
+markov_chance = 5
 dick = {}
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
@@ -21,6 +21,7 @@ def start(update, context):
     chat_id = update.message.chat.id
     update.message.reply_text(chat_id)
     cursor.execute("INSERT INTO dickdump VALUES (?,?,?)", (chat_id, 'Добрый', repr(['день'])))
+
 
 def make_pairs(words_in_message):
     for i in range(len(words_in_message)- 1):
@@ -83,11 +84,10 @@ def message_handler(update, context):
         exit_message = exit_message.replace(" ,", ", ").replace(" .",". ").replace(" -"," - ").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ")
         update.message.reply_text(exit_message)
 
+
 def hello(update, context):
     update.message.reply_text(
         'Hello, {},\nмы находимся в чате под названием "{}"'.format(update.message.from_user.first_name, update.message.chat.title))
-
-
 
 
 def sun(update, context):
@@ -135,9 +135,16 @@ def cp77(update, context):
     result = "до выхода Cyberpunk 2077 осталось: {0}, {1}, {2}".format(td, th, tm)
     update.message.reply_text(result)
 
+
 def get_kub(update, context):
     random_kubik = kubik_path + random.choice([kub for kub in os.listdir(kubik_path) if os.path.isfile(os.path.join(kubik_path, kub))])
     update.message.reply_photo(photo = open(random_kubik , 'rb'))
+
+
+def get_dog(update, context):
+    message_to = update.message.reply_to_message
+    if message_to != None:
+        message_to.reply_animation(animation='https://media.giphy.com/media/F65M9crzsQe2U3TpaI/giphy.gif')
 
 
 def main():
@@ -146,6 +153,7 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('start', start)) #создает базу словаря
     updater.dispatcher.add_handler(CommandHandler('cp77', cp77))    #отсчитывает время до cp77
     updater.dispatcher.add_handler(CommandHandler('get_kub', get_kub)) # показать кубика из папки
+    updater.dispatcher.add_handler(CommandHandler('get_dog', get_dog)) # кинуть пса
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, sun)) # приветствие при добавлении в чат
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.left_chat_member, leave)) # стикер при удалении из чата
     updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, message_handler)) #добавляет слово из чата в словарь
