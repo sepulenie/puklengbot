@@ -1,0 +1,128 @@
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "/home/maxim/python/puklengbot/botik.py", line 141, in get_kub
+    random_kubik = kubik_path + random.choice([kub for kub in os.listdir(kubik_path) if os.path.isfile(os.path.join(kubik_path, kub))])
+FileNotFoundError: [Errno 2] No such file or directory: '/home/ubuntu/botfiles/puklengbot/kubik/'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "/home/maxim/python/puklengbot/botik.py", line 67, in message_handler
+    if random.random() < markov_chance/100 or update.message.reply_to_message.from_user.username == "puklengtime_bot":
+AttributeError: 'NoneType' object has no attribute 'from_user'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "/home/maxim/python/puklengbot/botik.py", line 72, in message_handler
+    random_index = random.randrange(0, (len(words_in_message)))
+  File "/usr/lib/python3.7/random.py", line 200, in randrange
+    raise ValueError("empty range for randrange() (%d,%d, %d)" % (istart, istop, width))
+ValueError: empty range for randrange() (0,0, 0)
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "/home/maxim/python/puklengbot/botik.py", line 67, in message_handler
+    if random.random() < markov_chance/100 or update.message.reply_to_message.from_user.username == "puklengtime_bot":
+AttributeError: 'NoneType' object has no attribute 'from_user'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "/home/maxim/python/puklengbot/botik.py", line 67, in message_handler
+    if random.random() < markov_chance/100 or update.message.reply_to_message.from_user.username == "puklengtime_bot":
+AttributeError: 'NoneType' object has no attribute 'from_user'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "/home/maxim/python/puklengbot/botik.py", line 67, in message_handler
+    if random.random() < markov_chance/100 or update.message.reply_to_message.from_user.username == "puklengtime_bot":
+AttributeError: 'NoneType' object has no attribute 'from_user'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "/home/maxim/python/puklengbot/botik.py", line 67, in message_handler
+    if random.random() < markov_chance/100 or update.message.reply_to_message.from_user.username == "puklengtime_bot":
+AttributeError: 'NoneType' object has no attribute 'from_user'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "/home/maxim/python/puklengbot/botik.py", line 67, in message_handler
+    if random.random() < markov_chance/100 or update.message.reply_to_message.from_user.username == "puklengtime_bot":
+AttributeError: 'NoneType' object has no attribute 'from_user'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "/home/maxim/python/puklengbot/botik.py", line 67, in message_handler
+    if random.random() < markov_chance/100 or update.message.reply_to_message.from_user.username == "puklengtime_bot":
+AttributeError: 'NoneType' object has no attribute 'from_user'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "/home/maxim/python/puklengbot/botik.py", line 67, in message_handler
+    if random.random() < markov_chance/100 or update.message.reply_to_message.from_user.username == "puklengtime_bot":
+AttributeError: 'NoneType' object has no attribute 'from_user'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "/home/maxim/python/puklengbot/botik.py", line 67, in message_handler
+    if random.random() < markov_chance/100 or update.message.reply_to_message.from_user.username == "puklengtime_bot":
+AttributeError: 'NoneType' object has no attribute 'from_user'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "/home/maxim/python/puklengbot/botik.py", line 67, in message_handler
+    if random.random() < markov_chance/100 or update.message.reply_to_message.from_user.username == "puklengtime_bot":
+AttributeError: 'NoneType' object has no attribute 'from_user'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "/home/maxim/python/puklengbot/botik.py", line 67, in message_handler
+    if random.random() < markov_chance/100 or update.message.reply_to_message.from_user.username == "puklengtime_bot":
+AttributeError: 'NoneType' object has no attribute 'from_user'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "/home/maxim/python/puklengbot/botik.py", line 67, in message_handler
+    if random.random() < markov_chance/100 or update.message.reply_to_message.from_user.username == "puklengtime_bot":
+AttributeError: 'NoneType' object has no attribute 'from_user'

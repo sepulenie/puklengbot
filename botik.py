@@ -1,7 +1,7 @@
 '''
-ver. 0.0.9
+ver. 0.1
 '''
-import os, datetime, random, sqlite3, logging, urllib3
+import os, datetime, random, sqlite3, logging, urllib3, re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
 
@@ -59,11 +59,12 @@ def next_word(first_word, chat_id):
 
 
 def message_handler(update, context):
+    message = re.sub(r'''(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))''', " ", update.message.text)
     message = update.message.text.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
     words_in_message = message.split()
     chat_id = update.message.chat.id
     add_to_dick(words_in_message, chat_id)
-    if random.random() < markov_chance/100:
+    if random.random() < markov_chance/100 or update.message.reply_to_message.from_user.username == "puklengtime_bot":
         random_index = random.randrange(0, (len(words_in_message)))
         first_word = words_in_message[random_index]
         while first_word.isalpha() == False:
@@ -153,7 +154,7 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('start', start)) #создает базу словаря
     updater.dispatcher.add_handler(CommandHandler('cp77', cp77))    #отсчитывает время до cp77
     updater.dispatcher.add_handler(CommandHandler('get_kub', get_kub)) # показать кубика из папки
-    updater.dispatcher.add_handler(CommandHandler('get_dog', get_dog)) # кинуть пса
+    updater.dispatcher.add_handler(CommandHandler('get_dog', get_dog)) # кинуть гифку бьющего пса
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, sun)) # приветствие при добавлении в чат
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.left_chat_member, leave)) # стикер при удалении из чата
     updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, message_handler)) #добавляет слово из чата в словарь
