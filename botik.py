@@ -1,5 +1,5 @@
 '''
-ver. 0.1
+ver. 0.1.1
 '''
 import os, datetime, random, sqlite3, logging, urllib3, re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
@@ -59,8 +59,9 @@ def next_word(first_word, chat_id):
 
 
 def message_handler(update, context):
-    message = re.sub(r'''(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))''', " ", update.message.text)
-    message = update.message.text.replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
+    message = re.sub(r"http\S+", "", update.message.text)
+    message = re.sub(r"\S*@\S*\s?", "", message)
+    message = message.replace('?!',' ?! ').replace('??',' ?? ').replace('!!',' !! ').replace('...',' ... ').replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
     words_in_message = message.split()
     chat_id = update.message.chat.id
     add_to_dick(words_in_message, chat_id)
@@ -82,7 +83,7 @@ def message_handler(update, context):
                 chain.append(next_word_var)
                 first_word = next_word_var
         exit_message = ' '.join(chain)
-        exit_message = exit_message.replace(" ,", ", ").replace(" .",". ").replace(" -"," - ").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ")
+        exit_message = exit_message.replace(" ,", ", ").replace(" .",". ").replace(" -","-").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ")
         update.message.reply_text(exit_message)
 
 

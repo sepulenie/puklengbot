@@ -5,7 +5,7 @@ cursor = conn.cursor()
 cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(chat_id integer, word_0 text, word_1 text)""")
 
 
-search = "SELECT * FROM dickdump WHERE word_1 LIKE '%ru%'"
+search = "DELETE FROM dickdump WHERE word_1 LIKE '%io/%'"
 cursor.execute(search)
 conn.commit()
 print(cursor.fetchall())
