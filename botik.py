@@ -65,7 +65,7 @@ def message_handler(update, context):
     words_in_message = message.split()
     chat_id = update.message.chat.id
     add_to_dick(words_in_message, chat_id)
-    if random.random() < markov_chance/100 or update.message.reply_to_message.from_user.username == "puklengtime_bot":
+    if random.random() < markov_chance/100 or (update.message.reply_to_message != "None" and update.message.reply_to_message.from_user.username == "puklengtime_bot"):
         random_index = random.randrange(0, (len(words_in_message)))
         first_word = words_in_message[random_index]
         while first_word.isalpha() == False:
