@@ -1,5 +1,5 @@
 '''
-ver. 0.1.1
+ver. 0.1.2
 '''
 import os, datetime, random, sqlite3, logging, urllib3, re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
@@ -74,7 +74,7 @@ def message_handler(update, context):
             first_word = words_in_message[random_index]
         chain = [first_word]
         next_word_var = next_word(first_word, chat_id)
-        n_words = random.randint(1, 30)
+        n_words = random.randint(5, 30)
         for i in range(n_words):
             next_word_var = next_word(first_word, chat_id)
             if next_word_var == None:
