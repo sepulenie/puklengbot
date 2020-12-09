@@ -10,7 +10,7 @@ logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(level
 https = urllib3.PoolManager()
 dog_url = https.request('GET','https://media.giphy.com/media/F65M9crzsQe2U3TpaI/giphy.gif')
 kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
-markov_chance = 1
+markov_chance = 5
 dick = {}
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
@@ -131,16 +131,14 @@ def cp77(update, context):
     currentdatetime = datetime.datetime.now()
     itsready = datetime.datetime(2020, 12, 10, 3, 0)
     whenitsready = (itsready - currentdatetime)
-    td = truedays(whenitsready.days)
-    th = truehours(whenitsready.seconds//3600)
-    tm = trueminutes((whenitsready.seconds//60) % 60)
-    print(td, type(td, th)
-    
-    if th < 0:
-        result = "Вышла же уже, го шпилить!"
-    else:
+    if (whenitsready.days >= 0):
+        td = truedays(whenitsready.days)
+        th = truehours(whenitsready.seconds//3600)
+        tm = trueminutes((whenitsready.seconds//60) % 60)
         result = "Кое-кто уже играет, но до полноценного выхода Cyberpunk 2077 осталось: {0}, {1}".format(th, tm)
-    update.message.reply_text(td, th, result)
+    else:
+        result = "Так вышла уже, го шпилить"
+    update.message.reply_text(result)
 
 
 def get_kub(update, context):
