@@ -10,7 +10,7 @@ logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(level
 https = urllib3.PoolManager()
 dog_url = https.request('GET','https://media.giphy.com/media/F65M9crzsQe2U3TpaI/giphy.gif')
 kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
-markov_chance = 5
+markov_chance = 1
 dick = {}
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
