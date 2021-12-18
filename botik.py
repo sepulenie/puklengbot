@@ -10,7 +10,7 @@ logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(level
 https = urllib3.PoolManager()
 dog_url = https.request('GET','https://media.giphy.com/media/F65M9crzsQe2U3TpaI/giphy.gif')
 kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
-markov_chance = 1
+markov_chance = 20
 dick = {}
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
@@ -74,7 +74,7 @@ def message_handler(update, context):
             first_word = words_in_message[random_index]
         chain = [first_word]
         next_word_var = next_word(first_word, chat_id)
-        n_words = random.randint(5, 30)
+        n_words = random.randint(2, 15)
         for i in range(n_words):
             next_word_var = next_word(first_word, chat_id)
             if next_word_var == None:
@@ -84,7 +84,7 @@ def message_handler(update, context):
                 first_word = next_word_var
         exit_message = ' '.join(chain)
         exit_message = exit_message.replace(" ,", ", ").replace(" .",". ").replace(" -","-").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ")
-        update.message.reply_text(exit_message)
+        context.bot.send_message(chat_id = update.message.chat_id, text = exit_message)
 
 
 def hello(update, context):
@@ -100,52 +100,6 @@ def leave(update, context):
     update.message.reply_sticker("CAACAgIAAxkBAAEBRJRfSOutTFb77ZdoE6Fe4t09Sqi9cgACYAAD3N3lFSPHyb0-_G4ZGwQ")
 
 
-def cp77(update, context):
-    def truedays(days):
-        day = str(days)
-        if day[-1] in ['0', '5', '6', '7', '8', '9'] or (len(day) > 1 and day[-2] == '1'):
-            return '{0} дней'.format(day)
-        elif day[-1] in ['2', '3', '4'] or (len(day) > 1 and day[-2] == '1'):
-            return '{0} дня'.format(day)
-        elif day[-1] == '1':
-            return '{0} день'.format(day)
-
-    def truehours(hours):
-        hour = str(hours)
-        if hour[-1] in ['0', '5', '6', '7', '8', '9'] or (len(hour) > 1 and hour[-2] == '1'):
-            return '{0} часов'.format(hour)
-        elif hour[-1] in ['2', '3', '4'] or (len(hour) > 1 and hour[-2] == '1'):
-            return '{0} часа'.format(hour)
-        elif hour[-1] == '1':
-            return '{0} час'.format(hour)
-
-    def trueminutes(minutes):
-        minute = str(minutes)
-        if minute[-1] in ['0', '5', '6', '7', '8', '9'] or (len(minute) > 1 and minute[-2] == '1'):
-            return '{0} минут'.format(minute)
-        elif minute[-1] in ['2', '3', '4'] or (len(minute) > 1 and minute[-2] == '1'):
-            return '{0} минуты'.format(minute)
-        elif minute[-1] == '1':
-            return '{0} минута'.format(minute)
-            
-    currentdatetime = datetime.datetime.now()
-    itsready = datetime.datetime(2020, 12, 10, 3, 0)
-    whenitsready = (itsready - currentdatetime)
-    if (whenitsready.days >= 0):
-        td = truedays(whenitsready.days)
-        th = truehours(whenitsready.seconds//3600)
-        tm = trueminutes((whenitsready.seconds//60) % 60)
-        result = "Кое-кто уже играет, но до полноценного выхода Cyberpunk 2077 осталось: {0}, {1}".format(th, tm)
-    else:
-        result = "Так вышла уже, го шпилить"
-    update.message.reply_text(result)
-
-
-def get_kub(update, context):
-    random_kubik = kubik_path + random.choice([kub for kub in os.listdir(kubik_path) if os.path.isfile(os.path.join(kubik_path, kub))])
-    update.message.reply_photo(photo = open(random_kubik , 'rb'))
-
-
 def get_dog(update, context):
     message_to = update.message.reply_to_message
     if message_to != None:
@@ -156,8 +110,6 @@ def main():
     updater = Updater(token, use_context=True)
     updater.dispatcher.add_handler(CommandHandler('hello', hello)) #говорит "привет"
     updater.dispatcher.add_handler(CommandHandler('start', start)) #создает базу словаря
-    updater.dispatcher.add_handler(CommandHandler('cp77', cp77))    #отсчитывает время до cp77
-    updater.dispatcher.add_handler(CommandHandler('get_kub', get_kub)) # показать кубика из папки
     updater.dispatcher.add_handler(CommandHandler('get_dog', get_dog)) # кинуть гифку бьющего пса
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, sun)) # приветствие при добавлении в чат
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.left_chat_member, leave)) # стикер при удалении из чата
