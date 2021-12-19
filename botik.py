@@ -1,7 +1,7 @@
 '''
-ver. 0.1.2
+ver. 0.1.3
 '''
-import os, datetime, random, sqlite3, logging, urllib3, re
+import random, sqlite3, logging, urllib3, re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
 
@@ -99,6 +99,10 @@ def sun(update, context):
 def leave(update, context):
     update.message.reply_sticker("CAACAgIAAxkBAAEBRJRfSOutTFb77ZdoE6Fe4t09Sqi9cgACYAAD3N3lFSPHyb0-_G4ZGwQ")
 
+#def get_kub(update, context):
+#   random_kubik = kubik_path + random.choice([kub for kub in os.listdir(kubik_path) if os.path.isfile(os.path.join(kubik_path, kub))])
+#   update.message.reply_photo(photo = open(random_kubik , 'rb'))
+
 
 def get_dog(update, context):
     message_to = update.message.reply_to_message
@@ -110,6 +114,7 @@ def main():
     updater = Updater(token, use_context=True)
     updater.dispatcher.add_handler(CommandHandler('hello', hello)) #говорит "привет"
     updater.dispatcher.add_handler(CommandHandler('start', start)) #создает базу словаря
+    #updater.dispatcher.add_handler(CommandHandler('get_kub', get_kub)) # показать кубика из папки
     updater.dispatcher.add_handler(CommandHandler('get_dog', get_dog)) # кинуть гифку бьющего пса
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, sun)) # приветствие при добавлении в чат
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.left_chat_member, leave)) # стикер при удалении из чата
