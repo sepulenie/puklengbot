@@ -1,5 +1,5 @@
 '''
-ver. 0.1.3
+ver. 0.1.4 test
 '''
 import random, sqlite3, logging, urllib3, re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
@@ -10,7 +10,7 @@ logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(level
 https = urllib3.PoolManager()
 dog_url = https.request('GET','https://media.giphy.com/media/F65M9crzsQe2U3TpaI/giphy.gif')
 kubik_path = r"/home/ubuntu/botfiles/puklengbot/kubik/"
-markov_chance = 2
+markov_chance = 100
 dick = {}
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
@@ -86,38 +86,9 @@ def message_handler(update, context):
         exit_message = exit_message.replace(" ,", ", ").replace(" .",". ").replace(" -","-").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ")
         context.bot.send_message(chat_id = update.message.chat_id, text = exit_message)
 
-
-def hello(update, context):
-    update.message.reply_text(
-        'Hello, {},\nмы находимся в чате под названием "{}"'.format(update.message.from_user.first_name, update.message.chat.title))
-
-
-def sun(update, context):
-    update.message.reply_text('Под этим солнцем и небом мы тепло приветствуем тебя!')
-
-
-def leave(update, context):
-    update.message.reply_sticker("CAACAgIAAxkBAAEBRJRfSOutTFb77ZdoE6Fe4t09Sqi9cgACYAAD3N3lFSPHyb0-_G4ZGwQ")
-
-#def get_kub(update, context):
-#   random_kubik = kubik_path + random.choice([kub for kub in os.listdir(kubik_path) if os.path.isfile(os.path.join(kubik_path, kub))])
-#   update.message.reply_photo(photo = open(random_kubik , 'rb'))
-
-
-def get_dog(update, context):
-    message_to = update.message.reply_to_message
-    if message_to != None:
-        message_to.reply_animation(animation='https://media.giphy.com/media/F65M9crzsQe2U3TpaI/giphy.gif')
-
-
 def main():
     updater = Updater(token, use_context=True)
-    updater.dispatcher.add_handler(CommandHandler('hello', hello)) #говорит "привет"
     updater.dispatcher.add_handler(CommandHandler('start', start)) #создает базу словаря
-    #updater.dispatcher.add_handler(CommandHandler('get_kub', get_kub)) # показать кубика из папки
-    updater.dispatcher.add_handler(CommandHandler('get_dog', get_dog)) # кинуть гифку бьющего пса
-    updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, sun)) # приветствие при добавлении в чат
-    updater.dispatcher.add_handler(MessageHandler(Filters.status_update.left_chat_member, leave)) # стикер при удалении из чата
     updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, message_handler)) #добавляет слово из чата в словарь
     updater.start_polling()
     updater.idle()
