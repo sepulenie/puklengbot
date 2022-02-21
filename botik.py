@@ -8,10 +8,10 @@ from teleconfig import token
 logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
 https = urllib3.PoolManager()
-markov_chance = 100
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
 cursor.execute("""CREATE TABLE IF NOT EXISTS dickdump(chat_id integer, word_0 text, word_1 text)""")
+markov_chance = 100
 
 
 def start(update, context):
