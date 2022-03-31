@@ -16,8 +16,7 @@ markov_chance = 100
 
 def start(update, context):
     chat_id = update.message.chat.id
-    update.message.reply_text(chat_id)
-    cursor.execute("INSERT INTO dickdump VALUES (?,?,?)", (chat_id, 'Добрый', repr(['день'])))
+    update.message.reply_text('ID чата - ', chat_id)
 
 
 def make_pairs(words_in_message):
