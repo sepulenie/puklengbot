@@ -4,7 +4,7 @@ ver. 0.1.4 test
 import random, sqlite3, logging, urllib3, re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
-
+from generator import markov_generator
 logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
 https = urllib3.PoolManager()
@@ -14,7 +14,7 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS dickdump(chat_id integer, word_0 te
 markov_chance = 100
 
 
-def start(update, context):
+def start(update):
     chat_id = update.message.chat.id
     update.message.reply_text('ID чата - ', chat_id)
 
@@ -55,12 +55,14 @@ def next_word(first_word, chat_id):
 
 
 def message_handler(update, context):
-    message = re.sub(r"http\S+", "", update.message.text)
-    message = re.sub(r"\S*@\S*\s?", "", message)
-    message = message.replace('?!',' ?! ').replace('??',' ?? ').replace('!!',' !! ').replace('...',' ... ').replace(',', ' , ').replace('.',' . ').replace('-',' - ').replace('?',' ? ').replace('!',' ! ').replace('«',' « ').replace('»',' » ').replace(';',' ; ')
-    words_in_message = message.split()
     chat_id = update.message.chat.id
+    message = re.sub(r"http\S+", " ", update.message.text)
+    message = re.sub(r"\S*@\S*\s?", " ", message)
+    message = re.sub(r"\n", " ", message)
+    words_in_message = message.split(' ')
     add_to_dick(words_in_message, chat_id)
+
+
     if random.random() < markov_chance/100 or (update.message.reply_to_message != "None" and update.message.reply_to_message.from_user.username == "puklengtime_bot"):
         random_index = random.randrange(0, (len(words_in_message)))
         first_word = words_in_message[random_index]
