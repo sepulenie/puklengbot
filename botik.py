@@ -4,7 +4,7 @@ ver. 0.1.6 dic
 import random, sqlite3, logging, urllib3, re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
-from generator import add_words_in_message_to_dictionary, generate_shitpost
+from generator import add_words_in_message_to_dictionary, generate_message
 logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
 https = urllib3.PoolManager()
@@ -27,7 +27,7 @@ def message_handler(update, context):
     print("\nИзначальное сообщение -- ", message, "\n")
     add_words_in_message_to_dictionary(message, chat_id)
     if random.random() < markov_chance/100 or (update.message.reply_to_message != "None" and update.message.reply_to_message.from_user.username == "puklengtime_bot"):
-        generate_shitpost('message', chat_id)
+        generate_message(message, chat_id)
     else:
         pass
     

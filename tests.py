@@ -1,11 +1,6 @@
-import sqlite3, random
+import random
 
-conn = sqlite3.connect("dickdump.db")
-cursor = conn.cursor()
-cursor.execute("""CREATE TABLE  IF NOT EXISTS   dickdump(chat_id integer, word_0 text, word_1 text)""")
+s = random.randint(2, 22)
 
-
-search = "DELETE FROM dickdump WHERE word_1 LIKE '%s=19%'"
-cursor.execute(search)
-conn.commit()
-print(cursor.fetchall())
+for i in range(s):
+    print(i)
