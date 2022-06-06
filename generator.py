@@ -8,13 +8,11 @@ def add_words_in_message_to_dictionary(message, chat_id):
     message = re.sub(r"\S*@\S*\s?", " ", message)
     message = re.sub(r"\n", " ", message)
     words_in_message = message.split(" ")
-    print(words_in_message)
     def make_pairs(words_in_message):
         for i in range(len(words_in_message)- 1):
             yield (words_in_message[i], words_in_message[i + 1])
 
     pair_of_words = make_pairs(words_in_message)
-    print(pair_of_words)
 
     for word_0, word_1 in pair_of_words:
         search = "SELECT * FROM dickdump WHERE chat_id=? AND word_0=?"
@@ -34,9 +32,23 @@ def add_words_in_message_to_dictionary(message, chat_id):
                 search_result_word_1.update({word_1:1})
                 cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=?", (repr(search_result_word_1), search_result_word_0))
     conn.commit()
-
+    
 def generate_shitpost(message, chat_id):
-    print("hello")
+    message = re.sub(r"http\S+", " ", message)
+    message = re.sub(r"\S*@\S*\s?", " ", message)
+    message = re.sub(r"\n", " ", message)
+    words_in_message = message.split(" ")
+
+    random_case = random.randint(0,2)
+
+    
+    if random_case == 0:
+        pass
+    elif random_case == 1:
+        pass
+    elif random_case == 2:
+        pass
+
 
 
 
