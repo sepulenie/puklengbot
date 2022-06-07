@@ -1,5 +1,5 @@
 '''
-ver. 0.1.6 dic
+ver. 0.1.7 Martin alexeevich
 '''
 import random, sqlite3, logging, urllib3, re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
@@ -14,7 +14,6 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS dickdump(chat_id integer, word_0 te
 conn.commit()
 markov_chance = 100
 
-
 def start(update):
     chat_id = update.message.chat.id
     update.message.reply_text('ID чата - ', chat_id)
@@ -24,13 +23,12 @@ def start(update):
 def message_handler(update, context):
     chat_id = update.message.chat.id
     message = update.message.text
-    print("\nИзначальное сообщение -- ", message, "\n")
     add_words_in_message_to_dictionary(message, chat_id)
     if random.random() < markov_chance/100 or (update.message.reply_to_message != "None" and update.message.reply_to_message.from_user.username == "puklengtime_bot"):
-        generate_message(message, chat_id)
+        context.bot.send_message(chat_id = update.message.chat_id, text = generate_message(message, chat_id))
     else:
         pass
-    
+
 
 def main():
     updater = Updater(token, use_context=True)
