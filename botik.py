@@ -1,5 +1,5 @@
 '''
-ver. 0.1.7 Martin alexeevich
+ver. 0.1.8 Martin alexeevich
 '''
 import random, sqlite3, logging, urllib3, re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
