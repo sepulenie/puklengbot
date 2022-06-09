@@ -1,6 +1,6 @@
-from asyncio import SendfileNotAvailableError
+
 import sqlite3, random, re
-from xml.sax.saxutils import prepare_input_source
+
 
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
@@ -12,9 +12,9 @@ def add_words_in_message_to_dictionary(message, chat_id):
     message = re.sub(r"http\S+", " ", message)
     message = re.sub(r"\S*@\S*\s?", " ", message)
     message = re.sub(r"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", " ", message)
-    message = re.sub(r'([!@?[]{}с#%\^&\*\(\):;"\',\./\\]+)', r' \1 ', message)
     message = re.sub(r"\n", " ", message)
-    words_in_message = message.split()
+    words_in_message = re.findall(r"[\w]+|[^\s\w]", message)  
+    #words_in_message = message.split()
     def make_pairs(words_in_message):
         for i in range(len(words_in_message)- 1):
             yield (words_in_message[i], words_in_message[i + 1])
@@ -30,7 +30,7 @@ def add_words_in_message_to_dictionary(message, chat_id):
             search_result_word_1 = dict
             search_result_word_1 = eval(search_result[2])
             if word_1 in search_result_word_1.keys():
-                search_result_word_1.update({word_1: (search_result_word_1.get(word_1)+3)})
+                search_result_word_1.update({word_1: (search_result_word_1.get(word_1)+5)})
                 cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=?", (repr(search_result_word_1), search_result_word_0))
             else:
                 search_result_word_1.update({word_1:1})
@@ -64,9 +64,8 @@ def generate_message(message, chat_id):
     message = re.sub(r"http\S+", " ", message)
     message = re.sub(r"\S*@\S*\s?", " ", message)
     message = re.sub(r"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", " ", message)
-    message = re.sub(r'([!@?[]{}с#%\^&\*\(\):;"\',\./\\]+)', r' \1 ', message)
     message = re.sub(r"\n", " ", message)
-    words_in_message = message.split()                                           
+    words_in_message = re.findall(r"[\w]+|[^\s\w]", message)                                          
     random_case = 1  
 
 
