@@ -1,5 +1,5 @@
 '''
-ver. 0.2.1 Cum weights
+ver. 0.2.2 weights
 '''
 import random, sqlite3, logging, urllib3, re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
@@ -14,7 +14,7 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS dickdump(chat_id integer, word_0 te
 conn.commit()
 markov_chance = 100
 
-def start(update):
+def start(update, context):
     chat_id = update.message.chat.id
     update.message.reply_text('ID чата - ', chat_id)
     cursor.execute("INSERT INTO dickdump VALUES (?,?,?)", (chat_id, "Добрый", repr({"День": 1})))
@@ -33,7 +33,7 @@ def message_handler(update, context):
 def main():
     updater = Updater(token, use_context=True)
     updater.dispatcher.add_handler(CommandHandler('start', start)) #создает базу словаря
-    updater.dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, message_handler)) #добавляет слово из чата в словарь
+    updater.dispatcher.add_handler(MessageHandler(Filters.text & (~Filters.command | ~Filters.forwarded), message_handler)) #добавляет слово из чата в словарь
     updater.start_polling()
     updater.idle()
 
