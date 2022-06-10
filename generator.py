@@ -1,12 +1,8 @@
 
 import sqlite3, random, re
 
-
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
-
-
-
 
 def add_words_in_message_to_dictionary(message, chat_id):
     message = re.sub(r"http\S+", " ", message)
@@ -14,7 +10,6 @@ def add_words_in_message_to_dictionary(message, chat_id):
     message = re.sub(r"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", " ", message)
     message = re.sub(r"\n", " ", message)
     words_in_message = re.findall(r"[\w]+|[^\s\w]", message)  
-    #words_in_message = message.split()
     def make_pairs(words_in_message):
         for i in range(len(words_in_message)- 1):
             yield (words_in_message[i], words_in_message[i + 1])
@@ -38,7 +33,6 @@ def add_words_in_message_to_dictionary(message, chat_id):
     conn.commit()
 
 
-
 def first_word_finder(words_in_message):
     first_word_in_sentence = ''
     first_word_is_found = False
@@ -59,7 +53,6 @@ def first_word_finder(words_in_message):
         return first_word_in_sentence
 
 
-
 def generate_message(message, chat_id):
     message = re.sub(r"http\S+", " ", message)
     message = re.sub(r"\S*@\S*\s?", " ", message)
@@ -67,8 +60,6 @@ def generate_message(message, chat_id):
     message = re.sub(r"\n", " ", message)
     words_in_message = re.findall(r"[\w]+|[^\s\w]", message)                                          
     random_case = 1  
-
-
     if random_case == 0:                                                            
         sentence_lengh = random.randint(10, 500)                                      
         current_word_in_sentence = words_in_message[random.randrange(0, (len(words_in_message)))]
@@ -91,8 +82,6 @@ def generate_message(message, chat_id):
         final_sentence = ' '.join(sentence)
         final_sentence = final_sentence.replace(" ,", ", ").replace(" .",". ").replace(" -","-").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ")
         return final_sentence
-
-
     elif random_case == 1:
         max_sentences_amount = random.randint(2, 6)
         sentences_amount = 0
@@ -103,7 +92,6 @@ def generate_message(message, chat_id):
             sentence_lengh = 0
             sentences_amount += 1
             while sentence_lengh < max_sentence_lengh:
-                #print("Предложений ", sentences_amount, ('Слов ', sentence_lengh, " из ", max_sentence_lengh))
                 sentence_lengh += 1
                 search = "SELECT word_1 FROM dickdump WHERE chat_id=? AND word_0=?"
                 cursor.execute(search, [(chat_id), (current_word_in_sentence)])
