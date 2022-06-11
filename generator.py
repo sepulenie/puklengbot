@@ -97,10 +97,9 @@ def generate_message(message, chat_id):
                 cursor.execute(search, [(chat_id), (current_word_in_sentence)])
                 search_result = cursor.fetchone()
                 if search_result == None:
-                    final_sentence = ' '.join(sentence)
-                    final_sentence = final_sentence+"."
-                    final_sentence = final_sentence.replace(" ,", ", ").replace(" .",". ").replace(" -","-").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ").replace(" :", ": ")
-                    return final_sentence   
+                    current_word_in_sentence = random.choice([".", ",", "!", "?"])
+                    sentence.append(current_word_in_sentence)
+                    break
                 else:
                     search_result_as_dict = eval(search_result[0])
                     keys_list = list(search_result_as_dict.keys())
