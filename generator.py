@@ -1,5 +1,6 @@
 
 import sqlite3, random, re
+from string import punctuation
 
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
@@ -97,8 +98,11 @@ def generate_message(message, chat_id):
                 cursor.execute(search, [(chat_id), (current_word_in_sentence)])
                 search_result = cursor.fetchone()
                 if search_result == None:
-                    current_word_in_sentence = random.choice([".", ",", "!", "?"])
-                    sentence.append(current_word_in_sentence)
+                    if current_word_in_sentence.isalpha() == False:
+                        break
+                    else:
+                        current_word_in_sentence = random.choice([".", ",", "!", "?"])
+                        sentence.append(current_word_in_sentence)
                     break
                 else:
                     search_result_as_dict = eval(search_result[0])
