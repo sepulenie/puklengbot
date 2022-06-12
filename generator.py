@@ -27,10 +27,10 @@ def add_words_in_message_to_dictionary(message, chat_id):
             search_result_word_1 = eval(search_result[2])
             if word_1 in search_result_word_1.keys():
                 search_result_word_1.update({word_1: (search_result_word_1.get(word_1)+5)})
-                cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=?", (repr(search_result_word_1), search_result_word_0))
+                cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=? AND chat_id=?", (repr(search_result_word_1), search_result_word_0, chat_id))
             else:
                 search_result_word_1.update({word_1:1})
-                cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=?", (repr(search_result_word_1), search_result_word_0))
+                cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=? AND chat_id=?", (repr(search_result_word_1), search_result_word_0, chat_id))
     conn.commit()
 
 
