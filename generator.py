@@ -1,9 +1,18 @@
 
 import sqlite3, random, re
 from string import punctuation
+from typing import final
 
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
+
+def make_text_look_good(sentence = list):
+    good_looking_sentence = ' '.join(sentence)
+    good_looking_sentence = re.sub(r"\s(?=[ , . ! ? : ; — ])", "", good_looking_sentence)
+    good_looking_sentence = re.sub(r"(?<=[« \( \] \{ ])\s|\s(?=[»\) \] \} ])", "", good_looking_sentence)
+    good_looking_sentence = re.sub(r"(?<=\s\")\s(?=[\w\W]+[\"])", "", good_looking_sentence)
+    good_looking_sentence = re.sub(r"(?<=[a-zA-Z])\s(?=['`])|((?<=['`])\s(?=[a-zA-Z]))", "", good_looking_sentence)
+    return good_looking_sentence
 
 def add_words_in_message_to_dictionary(message, chat_id):
     message = re.sub(r"http\S+", " ", message)
@@ -55,6 +64,7 @@ def first_word_finder(words_in_message):
 
 
 def generate_message(message, chat_id):
+    print(message)
     message = re.sub(r"http\S+", " ", message)
     message = re.sub(r"\S*@\S*\s?", " ", message)
     message = re.sub(r"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", " ", message)
@@ -71,7 +81,7 @@ def generate_message(message, chat_id):
             search_result = cursor.fetchone()
             if search_result == None:
                 final_sentence = ' '.join(sentence)
-                final_sentence = final_sentence.replace(" ,", ", ").replace(" .",". ").replace(" -","-").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ").replace(" :", ": ")
+                final_sentence = re.sub(r"\s(?=[,.!?:;])", "", final_sentence)
                 return final_sentence
             else:
                 search_result_as_dict = eval(search_result[0])
@@ -81,7 +91,7 @@ def generate_message(message, chat_id):
                 sentence.append(random_next_word[0])
                 current_word_in_sentence = random_next_word[0]
         final_sentence = ' '.join(sentence)
-        final_sentence = final_sentence.replace(" ,", ", ").replace(" .",". ").replace(" -","-").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ")
+        final_sentence = re.sub(r"\s(?=[,.!?:;])", "", final_sentence)
         return final_sentence
     elif random_case == 1:
         max_sentences_amount = random.randint(2, 6)
@@ -116,6 +126,6 @@ def generate_message(message, chat_id):
                     else:
                         sentence.append(random_next_word[0])
                         current_word_in_sentence = random_next_word[0]
-        final_sentence = ' '.join(sentence)
-        final_sentence = final_sentence.replace(" ,", ", ").replace(" .",". ").replace(" -","-").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ").replace(" :", ": ").replace("- ","-")
+        final_sentence = make_text_look_good(sentence)
+        print(final_sentence)
         return final_sentence
