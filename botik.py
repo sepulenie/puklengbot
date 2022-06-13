@@ -12,7 +12,7 @@ conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
 cursor.execute("""CREATE TABLE IF NOT EXISTS dickdump(chat_id integer, word_0 text, word_1 text)""")
 conn.commit()
-markov_chance = 1
+markov_chance = 2
 
 def start(update, context):
     chat_id = update.message.chat.id
