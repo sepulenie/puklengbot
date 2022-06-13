@@ -117,5 +117,5 @@ def generate_message(message, chat_id):
                         sentence.append(random_next_word[0])
                         current_word_in_sentence = random_next_word[0]
         final_sentence = ' '.join(sentence)
-        final_sentence = final_sentence.replace(" ,", ", ").replace(" .",". ").replace(" -","-").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ").replace(" :", ": ")
+        final_sentence = final_sentence.replace(" ,", ", ").replace(" .",". ").replace(" -","-").replace(" ?","? ").replace(" !","! ").replace(" «","«").replace(" »","»").replace(" ;","; ").replace("  "," ").replace(" :", ": ").replace("- ","-")
         return final_sentence
