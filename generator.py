@@ -1,4 +1,6 @@
-
+'''
+ver. 0.2.7
+'''
 import sqlite3, random, re
 from string import punctuation
 
@@ -9,7 +11,6 @@ def make_text_look_good(sentence = list):
     good_looking_sentence = ' '.join(sentence)
     good_looking_sentence = re.sub(r"\s(?=[ , . ! ? : ; …])", "", good_looking_sentence)
     good_looking_sentence = re.sub(r"(?<=[« \( \] \{ ])\s|\s(?=[»\) \] \} ])", "", good_looking_sentence)
-    #good_looking_sentence = re.sub(r"(?<=\s\")\s(?=[\w\W]+[\"])", "", good_looking_sentence)
     good_looking_sentence = re.sub(r"(?<=[a-zA-Z])\s(?=['`’])|((?<=['`’])\s(?=[a-zA-Z]))", "", good_looking_sentence)
     good_looking_sentence = re.sub(" - ", "-", good_looking_sentence)
     if good_looking_sentence.count('"') % 2 == 1:
@@ -73,29 +74,42 @@ def generate_message(message, chat_id):
     message = re.sub(r"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", " ", message)
     message = re.sub(r"\n", " ", message)
     words_in_message = re.findall(r"[\w]+|[^\s\w]", message)                                          
-    random_case = 1  
-    if random_case == 0:                                                            
-        sentence_lengh = random.randint(10, 500)                                      
-        current_word_in_sentence = words_in_message[random.randrange(0, (len(words_in_message)))]
-        sentence = [current_word_in_sentence]              
-        for i in range(sentence_lengh):
-            search = "SELECT word_1 FROM dickdump WHERE chat_id=? AND word_0=?"
-            cursor.execute(search, [(chat_id), (current_word_in_sentence)])
-            search_result = cursor.fetchone()
-            if search_result == None:
-                final_sentence = ' '.join(sentence)
-                final_sentence = re.sub(r"\s(?=[,.!?:;])", "", final_sentence)
-                return final_sentence
-            else:
-                search_result_as_dict = eval(search_result[0])
-                keys_list = list(search_result_as_dict.keys())
-                values_list = list(search_result_as_dict.values())
-                random_next_word = random.choices(keys_list, weights=values_list, k=1)
-                sentence.append(random_next_word[0])
-                current_word_in_sentence = random_next_word[0]
-        final_sentence = ' '.join(sentence)
-        final_sentence = re.sub(r"\s(?=[,.!?:;])", "", final_sentence)
+    random_case = 0 
+    if random_case == 0:                                                       
+        max_sentences_amount = random.randint(2, 6)
+        sentences_amount = 0
+        current_word_in_sentence = first_word_finder(words_in_message)
+        sentence = ['>',current_word_in_sentence]
+        while sentences_amount < max_sentences_amount:
+            max_sentence_lengh = random.randint(2, 14)
+            sentence_lengh = 0
+            sentences_amount += 1
+            sentence.append('\n>')
+            while sentence_lengh < max_sentence_lengh:
+                sentence_lengh += 1
+                search = "SELECT word_1 FROM dickdump WHERE chat_id=? AND word_0=?"
+                cursor.execute(search, [(chat_id), (current_word_in_sentence)])
+                search_result = cursor.fetchone()
+                if search_result == None:
+                    if current_word_in_sentence.isalpha() == False:
+                        break
+                    else:
+                        current_word_in_sentence = random.choice([".", ",", "!", "?"])
+                    break
+                else:
+                    search_result_as_dict = eval(search_result[0])
+                    keys_list = list(search_result_as_dict.keys())
+                    values_list = list(search_result_as_dict.values())
+                    random_next_word = random.choices(keys_list, weights=values_list, k=1)
+                    if random_next_word[0] == '.' or random_next_word[0] == '?' or random_next_word[0] == '!':
+                        current_word_in_sentence = random_next_word[0]
+                        break
+                    else:
+                        sentence.append(random_next_word[0])
+                        current_word_in_sentence = random_next_word[0]
+        final_sentence = make_text_look_good(sentence)
         return final_sentence
+
     elif random_case == 1:
         max_sentences_amount = random.randint(2, 6)
         sentences_amount = 0

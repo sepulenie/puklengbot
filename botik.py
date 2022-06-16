@@ -1,5 +1,5 @@
 '''
-ver. 0.2.6
+ver. 0.2.7
 '''
 import random, sqlite3, logging, urllib3, re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
@@ -21,6 +21,7 @@ def start(update, context):
     conn.commit()
 
 def message_handler(update, context):
+    print('dd')
     chat_id = update.message.chat.id
     message = update.message.text
     add_words_in_message_to_dictionary(message, chat_id)
