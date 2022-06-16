@@ -11,6 +11,7 @@ def make_text_look_good(sentence = list):
     good_looking_sentence = re.sub(r"(?<=[« \( \] \{ ])\s|\s(?=[»\) \] \} ])", "", good_looking_sentence)
     #good_looking_sentence = re.sub(r"(?<=\s\")\s(?=[\w\W]+[\"])", "", good_looking_sentence)
     good_looking_sentence = re.sub(r"(?<=[a-zA-Z])\s(?=['`’])|((?<=['`’])\s(?=[a-zA-Z]))", "", good_looking_sentence)
+    good_looking_sentence = re.sub(" - ", "-", good_looking_sentence)
     if good_looking_sentence.count('"') % 2 == 1:
         good_looking_sentence = re.sub(r'"', '', good_looking_sentence)
     else:
