@@ -1,0 +1,987 @@
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 28, in message_handler
+    context.bot.send_message(chat_id = update.message.chat_id, text = generate_message(message, chat_id))
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/bot.py", line 130, in decorator
+    result = func(*args, **kwargs)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/bot.py", line 521, in send_message
+    api_kwargs=api_kwargs,
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/extbot.py", line 207, in _message
+    api_kwargs=api_kwargs,
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/bot.py", line 332, in _message
+    result = self._post(endpoint, data, timeout=timeout, api_kwargs=api_kwargs)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/bot.py", line 296, in _post
+    f'{self.base_url}/{endpoint}', data=data, timeout=effective_timeout
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/utils/request.py", line 366, in post
+    **urlopen_kwargs,
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/utils/request.py", line 279, in _request_wrapper
+    raise BadRequest(message)
+telegram.error.BadRequest: Message text is empty
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.updater - ERROR - Error while getting Updates: urllib3 HTTPError ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/vendor/ptb_urllib3/urllib3/connectionpool.py", line 617, in urlopen
+    chunked=chunked)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/vendor/ptb_urllib3/urllib3/connectionpool.py", line 402, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 2, in raise_from
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/vendor/ptb_urllib3/urllib3/connectionpool.py", line 398, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.7/http/client.py", line 1352, in getresponse
+    response.begin()
+  File "/usr/lib/python3.7/http/client.py", line 310, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.7/http/client.py", line 279, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/utils/request.py", line 259, in _request_wrapper
+    resp = self._con_pool.request(*args, **kwargs)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/vendor/ptb_urllib3/urllib3/request.py", line 70, in request
+    **urlopen_kw)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/vendor/ptb_urllib3/urllib3/request.py", line 148, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/vendor/ptb_urllib3/urllib3/poolmanager.py", line 244, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/vendor/ptb_urllib3/urllib3/connectionpool.py", line 666, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/vendor/ptb_urllib3/urllib3/util/retry.py", line 347, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/vendor/ptb_urllib3/urllib3/packages/six.py", line 685, in reraise
+    raise value.with_traceback(tb)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/vendor/ptb_urllib3/urllib3/connectionpool.py", line 617, in urlopen
+    chunked=chunked)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/vendor/ptb_urllib3/urllib3/connectionpool.py", line 402, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 2, in raise_from
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/vendor/ptb_urllib3/urllib3/connectionpool.py", line 398, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.7/http/client.py", line 1352, in getresponse
+    response.begin()
+  File "/usr/lib/python3.7/http/client.py", line 310, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.7/http/client.py", line 279, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+telegram.vendor.ptb_urllib3.urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/updater.py", line 646, in _network_loop_retry
+    if not action_cb():
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/updater.py", line 601, in polling_action_cb
+    allowed_updates=allowed_updates,
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/extbot.py", line 228, in get_updates
+    api_kwargs=api_kwargs,
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/bot.py", line 130, in decorator
+    result = func(*args, **kwargs)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/bot.py", line 2949, in get_updates
+    api_kwargs=api_kwargs,
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/bot.py", line 296, in _post
+    f'{self.base_url}/{endpoint}', data=data, timeout=effective_timeout
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/utils/request.py", line 366, in post
+    **urlopen_kwargs,
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/utils/request.py", line 265, in _request_wrapper
+    raise NetworkError(f'urllib3 HTTPError {error}') from error
+telegram.error.NetworkError: urllib3 HTTPError ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.updater - ERROR - Error while getting Updates: Bad Gateway
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/updater.py", line 646, in _network_loop_retry
+    if not action_cb():
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/updater.py", line 601, in polling_action_cb
+    allowed_updates=allowed_updates,
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/extbot.py", line 228, in get_updates
+    api_kwargs=api_kwargs,
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/bot.py", line 130, in decorator
+    result = func(*args, **kwargs)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/bot.py", line 2949, in get_updates
+    api_kwargs=api_kwargs,
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/bot.py", line 296, in _post
+    f'{self.base_url}/{endpoint}', data=data, timeout=effective_timeout
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/utils/request.py", line 366, in post
+    **urlopen_kwargs,
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/utils/request.py", line 290, in _request_wrapper
+    raise NetworkError('Bad Gateway')
+telegram.error.NetworkError: Bad Gateway
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.vendor.ptb_urllib3.urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.connection.VerifiedHTTPSConnection object at 0x7f95eac75c18>: Failed to establish a new connection: [Errno 101] Network is unreachable')': /bot485079174:AAHwotM-mDKdGCtFOjjPze_hfIj-l94-8PQ/getUpdates
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 555, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maximreutov/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 198, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 24, in message_handler
+    chat_id = update.message.chat.id
+AttributeError: 'NoneType' object has no attribute 'chat'

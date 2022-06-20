@@ -1,5 +1,5 @@
 '''
-ver. 0.2.8
+ver. 0.2.9
 '''
 from distutils.command.build_scripts import first_line_re
 import sqlite3, random, re
@@ -37,9 +37,15 @@ def make_greentext_look_good(sentence = list):
 def add_words_in_message_to_dictionary(message, chat_id):
     message = re.sub(r"http\S+", " ", message)
     message = re.sub(r"\S*@\S*\s?", " ", message)
+    message = re.sub(r">"," ", message)
     message = re.sub(r"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", " ", message)
     message = re.sub(r"\n", " ", message)
-    words_in_message = re.findall(r"[\w]+|[^\s\w]", message)  
+    message = re.sub(r"\s-\s", ' — ',message)
+    if message.isalpha() == True:
+        message = message+"."
+    else:
+        pass
+    words_in_message = re.findall(r"[\w]+|[^\s\w]", message)
     def make_pairs(words_in_message):
         for i in range(len(words_in_message)- 1):
             yield (words_in_message[i], words_in_message[i + 1])
@@ -90,8 +96,8 @@ def generate_message(message, chat_id):
     words_in_message = re.findall(r"[\w]+|[^\s\w]", message)                                          
     random_case = random.randint(1,100)
 
-    if random_case <= 5:
-        firstline_len = 5                                           
+    if message[0] == '>' :
+        firstline_len = random.randint(1,10)                                           
         max_greentext_lines = random.randint(1,4)
         greentext_lines = 0
         current_word_in_greentext = first_word_finder(words_in_message)
@@ -157,13 +163,13 @@ def generate_message(message, chat_id):
         final_greentext = make_greentext_look_good(greentext)
         return final_greentext
 
-    elif random_case > 5:
+    else:
         max_sentences_amount = random.randint(2, 6)
         sentences_amount = 0
         current_word_in_sentence = first_word_finder(words_in_message)
         sentence = [current_word_in_sentence]
         while sentences_amount < max_sentences_amount:
-            max_sentence_lengh = random.randint(2, 14)
+            max_sentence_lengh = random.randint(1, 10)
             sentence_lengh = 0
             sentences_amount += 1
             while sentence_lengh < max_sentence_lengh:

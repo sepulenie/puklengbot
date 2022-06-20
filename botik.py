@@ -1,5 +1,5 @@
 '''
-ver. 0.2.8
+ver. 0.2.9
 '''
 import random, sqlite3, logging, urllib3, re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
