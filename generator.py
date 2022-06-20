@@ -39,6 +39,7 @@ def add_words_in_message_to_dictionary(message, chat_id):
     message = re.sub(r"\S*@\S*\s?", " ", message)
     message = re.sub(r">"," ", message)
     message = re.sub(r"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", " ", message)
+    message = re.sub(r"(?<=\w)\n+", ". ", message)
     message = re.sub(r"\n", " ", message)
     message = re.sub(r"\s-\s", ' — ',message)
     if message.isalpha() == True:
