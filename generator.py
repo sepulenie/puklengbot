@@ -1,9 +1,7 @@
 '''
-ver. 0.2.9
+ver. 0.3.0
 '''
-from distutils.command.build_scripts import first_line_re
 import sqlite3, random, re
-from string import punctuation
 
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
@@ -11,24 +9,25 @@ cursor = conn.cursor()
 def make_text_look_good(sentence = list):
     good_looking_sentence = ' '.join(sentence)
     good_looking_sentence = re.sub(r"\s(?=[ , . ! ? : ; …])", "", good_looking_sentence)
+    good_looking_sentence = re.sub(r"(?<=\W)\W+", " ", good_looking_sentence)
     good_looking_sentence = re.sub(r"(?<=[« \( \] \{ ])\s|\s(?=[»\) \] \} ])", "", good_looking_sentence)
     good_looking_sentence = re.sub(r"(?<=[a-zA-Z])\s(?=['`’])|((?<=['`’])\s(?=[a-zA-Z]))", "", good_looking_sentence)
     good_looking_sentence = re.sub(" - ", "-", good_looking_sentence)
+    good_looking_sentence = re.sub(" / ", "/", good_looking_sentence)
     if good_looking_sentence.count('"') % 2 == 1:
         good_looking_sentence = re.sub(r'"', '', good_looking_sentence)
     else:
         good_looking_sentence = re.sub(r"([\"']+[*\w\W]+[\"])", r" \1 ", good_looking_sentence)
-    print(good_looking_sentence)
     return good_looking_sentence
 
 
 
 def make_greentext_look_good(sentence = list):
-    print(sentence)
     good_looking_greentext = ' '.join(sentence)
     good_looking_greentext = re.sub(r"(?<=>)\s", "", good_looking_greentext)
     good_looking_greentext = re.sub(r"\s(?=>)", "", good_looking_greentext)
     good_looking_greentext = re.sub(r"\s(?=[ , . ! ? : ; …])", "", good_looking_greentext)
+    good_looking_sentence = re.sub(r"(?<=\W)\W+", " ", good_looking_sentence)
     good_looking_greentext = re.sub(" - ", "-", good_looking_greentext)
     return good_looking_greentext
 
@@ -38,7 +37,7 @@ def add_words_in_message_to_dictionary(message, chat_id):
     message = re.sub(r"http\S+", " ", message)
     message = re.sub(r"\S*@\S*\s?", " ", message)
     message = re.sub(r">"," ", message)
-    message = re.sub(r"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", " ", message)
+    message = re.sub(r"...", "…", message)
     message = re.sub(r"(?<=[\s\w])\n+", ". ", message)
     message = re.sub(r"\n", " ", message)
     message = re.sub(" - ", ' — ',message)
@@ -70,7 +69,7 @@ def add_words_in_message_to_dictionary(message, chat_id):
     conn.commit()
 
 
-def first_word_finder(words_in_message):
+def first_word_finder(words_in_message, chat_id):
     first_word_in_sentence = ''
     first_word_is_found = False
     words_in_message = words_in_message
@@ -89,14 +88,22 @@ def first_word_finder(words_in_message):
                     first_word_is_found = True
         return first_word_in_sentence
 
+def random_first_word_finder(words_in_message, chat_id):
+    first_word_in_sentence = 'Я'
+    search_result = (111,'я',"\{'не':2\}")
+    while search_result[1][0].isupper() == False:
+        search = "SELECT * FROM dickdump WHERE chat_id=? ORDER BY random()"
+        cursor.execute(search, [chat_id])
+        search_result = (cursor.fetchone())
+    first_word_in_sentence = search_result[1]
+    return first_word_in_sentence
+
 def generate_message(message, chat_id):
     message = re.sub(r"http\S+", " ", message)
     message = re.sub(r"\S*@\S*\s?", " ", message)
-    message = re.sub(r"^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$", " ", message)
+    message = re.sub(r"\W+", " ", message)
     message = re.sub(r"\n", " ", message)
-    words_in_message = re.findall(r"[\w]+|[^\s\w]", message)                                          
-    random_case = random.randint(1,100)
-
+    words_in_message = re.findall(r"[\w]+|[^\s\w]", message)
     if message[0] == '>' :
         firstline_len = random.randint(1,10)                                           
         max_greentext_lines = random.randint(1,4)
@@ -166,9 +173,9 @@ def generate_message(message, chat_id):
 
     else:
         max_sentences_amount = random.randint(2, 10)
-
+        funcs = [first_word_finder, random_first_word_finder]
         sentences_amount = 0
-        current_word_in_sentence = first_word_finder(words_in_message)
+        current_word_in_sentence = random.choice(funcs)(words_in_message, chat_id)
         sentence = [current_word_in_sentence]
         while sentences_amount < max_sentences_amount:
             max_sentence_lengh = random.randint(1, 20)
