@@ -1,5 +1,5 @@
 '''
-ver. 0.3.0
+ver. 0.3.1
 '''
 import sqlite3, random, re
 
@@ -9,7 +9,6 @@ cursor = conn.cursor()
 def make_text_look_good(sentence = list):
     good_looking_sentence = ' '.join(sentence)
     good_looking_sentence = re.sub(r"\s(?=[ , . ! ? : ; …])", "", good_looking_sentence)
-    good_looking_sentence = re.sub(r"(?<=\W)\W+", " ", good_looking_sentence)
     good_looking_sentence = re.sub(r"(?<=[« \( \] \{ ])\s|\s(?=[»\) \] \} ])", "", good_looking_sentence)
     good_looking_sentence = re.sub(r"(?<=[a-zA-Z])\s(?=['`’])|((?<=['`’])\s(?=[a-zA-Z]))", "", good_looking_sentence)
     good_looking_sentence = re.sub(" - ", "-", good_looking_sentence)
@@ -18,6 +17,9 @@ def make_text_look_good(sentence = list):
         good_looking_sentence = re.sub(r'"', '', good_looking_sentence)
     else:
         good_looking_sentence = re.sub(r"([\"']+[*\w\W]+[\"])", r" \1 ", good_looking_sentence)
+    good_looking_sentence = re.sub(r"(?<=[\!\@\#\$\%\^\&\*\(\)-\=\+\.\,\/])[\!\@\#\$\%\^\&\*\(\)-\=\+\.\,\/]+", "", good_looking_sentence)
+    good_looking_sentence = re.sub(r"(?<=[0..9])\s(?=\%)", "", good_looking_sentence)
+    good_looking_sentence = re.sub(r"\s\*\s", "*", good_looking_sentence)
     return good_looking_sentence
 
 
@@ -37,14 +39,15 @@ def add_words_in_message_to_dictionary(message, chat_id):
     message = re.sub(r"http\S+", " ", message)
     message = re.sub(r"\S*@\S*\s?", " ", message)
     message = re.sub(r">"," ", message)
-    message = re.sub(r"...", "…", message)
     message = re.sub(r"(?<=[\s\w])\n+", ". ", message)
     message = re.sub(r"\n", " ", message)
     message = re.sub(" - ", ' — ',message)
+    message = re.sub(r"\.\.\.", "…", message)
     if message[-1].isalpha() == True:
         message = message+"."
     else:
         pass
+    message = re.sub(r"\.\.\.", "…", message)
     words_in_message = re.findall(r"[\w]+|[^\s\w]", message)
     def make_pairs(words_in_message):
         for i in range(len(words_in_message)- 1):
@@ -172,13 +175,13 @@ def generate_message(message, chat_id):
         return final_greentext
 
     else:
-        max_sentences_amount = random.randint(2, 10)
+        max_sentences_amount = random.randint(1, 8)
         funcs = [first_word_finder, random_first_word_finder]
         sentences_amount = 0
         current_word_in_sentence = random.choice(funcs)(words_in_message, chat_id)
         sentence = [current_word_in_sentence]
         while sentences_amount < max_sentences_amount:
-            max_sentence_lengh = random.randint(1, 20)
+            max_sentence_lengh = random.randint(1, 14)
             sentence_lengh = 0
             sentences_amount += 1
             while sentence_lengh < max_sentence_lengh:

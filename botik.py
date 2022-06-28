@@ -1,5 +1,5 @@
 '''
-ver. 0.3.0
+ver. 0.3.1
 '''
 import random, sqlite3, logging, urllib3, re
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
@@ -12,7 +12,7 @@ conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
 cursor.execute("""CREATE TABLE IF NOT EXISTS dickdump(chat_id integer, word_0 text, word_1 text)""")
 conn.commit()
-markov_chance = 2
+markov_chance = 3
 
 def start(update, context):
     chat_id = update.message.chat.id
