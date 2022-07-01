@@ -1,5 +1,5 @@
 '''
-ver. 0.3.1
+ver. 0.3.3
 '''
 import sqlite3, random, re
 
@@ -17,7 +17,7 @@ def make_text_look_good(sentence = list):
         good_looking_sentence = re.sub(r'"', '', good_looking_sentence)
     else:
         good_looking_sentence = re.sub(r"([\"']+[*\w\W]+[\"])", r" \1 ", good_looking_sentence)
-    good_looking_sentence = re.sub(r"(?<=[\!\@\#\$\%\^\&\*\(\)-\=\+\.\,\/])[\!\@\#\$\%\^\&\*\(\)-\=\+\.\,\/]+", "", good_looking_sentence)
+    good_looking_sentence = re.sub(r"(?<=[?!\.,@#$%^&…])[?!\.,@#$%^&*()\"';:+=-…]+", "", good_looking_sentence)
     good_looking_sentence = re.sub(r"(?<=[0..9])\s(?=\%)", "", good_looking_sentence)
     good_looking_sentence = re.sub(r"\s\*\s", "*", good_looking_sentence)
     return good_looking_sentence
