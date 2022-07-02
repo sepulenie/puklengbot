@@ -1,9 +1,9 @@
 '''
-ver. 0.3.3
+ver. 0.3.5 test
 '''
 import sqlite3, random, re
 
-conn = sqlite3.connect("dickdump.db", check_same_thread=False)
+conn = sqlite3.connect("dickdump_test.db", check_same_thread=False)
 cursor = conn.cursor()
 
 def make_text_look_good(sentence = list):
@@ -54,21 +54,21 @@ def add_words_in_message_to_dictionary(message, chat_id):
             yield (words_in_message[i], words_in_message[i + 1])
     pair_of_words = make_pairs(words_in_message)
     for word_0, word_1 in pair_of_words:
-        search = "SELECT * FROM dickdump WHERE chat_id=? AND word_0=?"
+        search = "SELECT * FROM dickdump_test WHERE chat_id=? AND word_0=?"
         cursor.execute(search, [(chat_id), (word_0)])
         search_result = (cursor.fetchone())
         if search_result == None:
-            cursor.execute("INSERT INTO dickdump VALUES (?,?,?)", (chat_id, word_0, repr({word_1: 1})))
+            cursor.execute("INSERT INTO dickdump_test VALUES (?,?,?)", (chat_id, word_0, repr({word_1: 1})))
         else:
             search_result_word_0 = search_result[1]
             search_result_word_1 = dict
             search_result_word_1 = eval(search_result[2])
             if word_1 in search_result_word_1.keys():
                 search_result_word_1.update({word_1: (search_result_word_1.get(word_1)+5)})
-                cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=? AND chat_id=?", (repr(search_result_word_1), search_result_word_0, chat_id))
+                cursor.execute("UPDATE dickdump_test SET word_1=? WHERE word_0=? AND chat_id=?", (repr(search_result_word_1), search_result_word_0, chat_id))
             else:
                 search_result_word_1.update({word_1:1})
-                cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=? AND chat_id=?", (repr(search_result_word_1), search_result_word_0, chat_id))
+                cursor.execute("UPDATE dickdump_test SET word_1=? WHERE word_0=? AND chat_id=?", (repr(search_result_word_1), search_result_word_0, chat_id))
     conn.commit()
 
 
@@ -95,7 +95,7 @@ def random_first_word_finder(words_in_message, chat_id):
     first_word_in_sentence = 'Я'
     search_result = (111,'я',"\{'не':2\}")
     while search_result[1][0].isupper() == False:
-        search = "SELECT * FROM dickdump WHERE chat_id=? ORDER BY random()"
+        search = "SELECT * FROM dickdump_test WHERE chat_id=? ORDER BY random()"
         cursor.execute(search, [chat_id])
         search_result = (cursor.fetchone())
     first_word_in_sentence = search_result[1]
@@ -115,7 +115,7 @@ def generate_message(message, chat_id):
         greentext = ['>',current_word_in_greentext]
         max_len_of_line = 5
         while len(greentext) < firstline_len:
-            search = "SELECT word_1 FROM dickdump WHERE chat_id=? AND word_0=?"
+            search = "SELECT word_1 FROM dickdump_test WHERE chat_id=? AND word_0=?"
             cursor.execute(search, [(chat_id), (current_word_in_greentext)])
             search_result = cursor.fetchone()
             if search_result == None:
@@ -145,7 +145,7 @@ def generate_message(message, chat_id):
             currentline_len = 0
             while currentline_len < max_len_of_line:
                 currentline_len += 1
-                search = "SELECT word_1 FROM dickdump WHERE chat_id=? AND word_0=?"
+                search = "SELECT word_1 FROM dickdump_test WHERE chat_id=? AND word_0=?"
                 cursor.execute(search, [(chat_id), (current_word_in_greentext)])
                 search_result = cursor.fetchone()
                 if search_result == None:
@@ -186,7 +186,7 @@ def generate_message(message, chat_id):
             sentences_amount += 1
             while sentence_lengh < max_sentence_lengh:
                 sentence_lengh += 1
-                search = "SELECT word_1 FROM dickdump WHERE chat_id=? AND word_0=?"
+                search = "SELECT word_1 FROM dickdump_test WHERE chat_id=? AND word_0=?"
                 cursor.execute(search, [(chat_id), (current_word_in_sentence)])
                 search_result = cursor.fetchone()
                 if search_result == None:
