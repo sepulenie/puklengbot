@@ -68,14 +68,14 @@ def power(update, context):
     if chat_id in all_chat_ids:
         try:
             shitpost_chance = int(context.args[0])
-            if shitpost_chance >= 1 and shitpost_chance <= 100:
+            if shitpost_chance >= 1 and shitpost_chance <= 1000:
                 all_chances.insert(all_chat_ids.index(chat_id), shitpost_chance)
                 cursor2.execute("UPDATE chatsconfig SET shitpost_chance=? WHERE chat_id=?", (shitpost_chance, chat_id))
                 context.bot.send_message(chat_id = update.effective_message.chat_id, text = "Устанавливаю силу щитпоста")
             else: 
-                context.bot.send_message(chat_id = update.effective_message.chat_id, text = "Что-то не то, надо заново (от 1 до 100)")
+                context.bot.send_message(chat_id = update.effective_message.chat_id, text = "Что-то не то, надо заново (от 1 до 1000)")
         except (IndexError, ValueError):
-            context.bot.send_message(chat_id = update.effective_message.chat_id, text = "Что-то не то, надо заново (от 1 до 100)")
+            context.bot.send_message(chat_id = update.effective_message.chat_id, text = "Что-то не то, надо заново (от 1 до 1000)")
     else:
         pass
     conn2.commit()
@@ -85,7 +85,9 @@ def message_handler(update, context):
     message = update.effective_message.text
     if chat_id in all_chat_ids and all_yauhenis_statuses[all_chat_ids.index(chat_id)]:
         add_words_in_message_to_dictionary(message, chat_id)
-        if random.random() < (all_chances[all_chat_ids.index(chat_id)])/100 or (update.effective_message.reply_to_message != None and update.effective_message.reply_to_message.from_user.username == "anywaymytestbot"):
+        d = int(2000*random.random())
+        print(d, all_chances[all_chat_ids.index(chat_id)])
+        if d < (all_chances[all_chat_ids.index(chat_id)]) or (update.effective_message.reply_to_message != None and update.effective_message.reply_to_message.from_user.username == "puklengtime_bot"):
             context.bot.send_message(chat_id = update.effective_message.chat_id, text = generate_message(message, chat_id))
         else:
             pass
