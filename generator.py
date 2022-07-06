@@ -3,7 +3,7 @@ ver. 0.3.5 test
 '''
 import sqlite3, random, re
 
-conn = sqlite3.connect("dickdump.db", check_same_thread=False)
+conn = sqlite3.connect("dickdump_test.db", check_same_thread=False)
 cursor = conn.cursor()
 
 def make_text_look_good(sentence = list):
@@ -29,8 +29,18 @@ def make_greentext_look_good(sentence = list):
     good_looking_greentext = re.sub(r"(?<=>)\s", "", good_looking_greentext)
     good_looking_greentext = re.sub(r"\s(?=>)", "", good_looking_greentext)
     good_looking_greentext = re.sub(r"\s(?=[ , . ! ? : ; …])", "", good_looking_greentext)
-    good_looking_sentence = re.sub(r"(?<=\W)\W+", " ", good_looking_sentence)
+    good_looking_greentext = re.sub(r"(?<=[« \( \] \{ ])\s|\s(?=[»\) \] \} ])", "", good_looking_greentext)
+    good_looking_greentext = re.sub(r"(?<=[a-zA-Z])\s(?=['`’])|((?<=['`’])\s(?=[a-zA-Z]))", "", good_looking_greentext)
     good_looking_greentext = re.sub(" - ", "-", good_looking_greentext)
+    good_looking_greentext = re.sub(" / ", "/", good_looking_greentext)
+    if good_looking_greentext.count('"') % 2 == 1:
+        good_looking_greentext = re.sub(r'"', '', good_looking_greentext)
+    else:
+        good_looking_greentext = re.sub(r"([\"']+[*\w\W]+[\"])", r" \1 ", good_looking_greentext)
+    good_looking_greentext = re.sub(r"(?<=[?!\.,@#$%^&…])[?!\.,@#$%^&*()\"';:+=-…]+", "", good_looking_greentext)
+    good_looking_greentext = re.sub(r"(?<=[0..9])\s(?=\%)", "", good_looking_greentext)
+    good_looking_greentext = re.sub(r"\s\*\s", "*", good_looking_greentext)
+    good_looking_greentext = re.sub(r">", "\n>", good_looking_greentext)
     return good_looking_greentext
 
 
@@ -48,27 +58,28 @@ def add_words_in_message_to_dictionary(message, chat_id):
     else:
         pass
     message = re.sub(r"\.\.\.", "…", message)
+    print(message)
     words_in_message = re.findall(r"[\w]+|[^\s\w]", message)
     def make_pairs(words_in_message):
         for i in range(len(words_in_message)- 1):
             yield (words_in_message[i], words_in_message[i + 1])
     pair_of_words = make_pairs(words_in_message)
     for word_0, word_1 in pair_of_words:
-        search = "SELECT * FROM dickdump WHERE chat_id=? AND word_0=?"
+        search = "SELECT * FROM dickdump_test WHERE chat_id=? AND word_0=?"
         cursor.execute(search, [(chat_id), (word_0)])
         search_result = (cursor.fetchone())
         if search_result == None:
-            cursor.execute("INSERT INTO dickdump VALUES (?,?,?)", (chat_id, word_0, repr({word_1: 1})))
+            cursor.execute("INSERT INTO dickdump_test VALUES (?,?,?)", (chat_id, word_0, repr({word_1: 1})))
         else:
             search_result_word_0 = search_result[1]
             search_result_word_1 = dict
             search_result_word_1 = eval(search_result[2])
             if word_1 in search_result_word_1.keys():
                 search_result_word_1.update({word_1: (search_result_word_1.get(word_1)+5)})
-                cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=? AND chat_id=?", (repr(search_result_word_1), search_result_word_0, chat_id))
+                cursor.execute("UPDATE dickdump_test SET word_1=? WHERE word_0=? AND chat_id=?", (repr(search_result_word_1), search_result_word_0, chat_id))
             else:
                 search_result_word_1.update({word_1:1})
-                cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=? AND chat_id=?", (repr(search_result_word_1), search_result_word_0, chat_id))
+                cursor.execute("UPDATE dickdump_test SET word_1=? WHERE word_0=? AND chat_id=?", (repr(search_result_word_1), search_result_word_0, chat_id))
     conn.commit()
 
 
@@ -95,27 +106,28 @@ def random_first_word_finder(words_in_message, chat_id):
     first_word_in_sentence = 'Я'
     search_result = (111,'я',"\{'не':2\}")
     while search_result[1][0].isupper() == False:
-        search = "SELECT * FROM dickdump WHERE chat_id=? ORDER BY random()"
+        search = "SELECT * FROM dickdump_test WHERE chat_id=? ORDER BY random()"
         cursor.execute(search, [chat_id])
         search_result = (cursor.fetchone())
     first_word_in_sentence = search_result[1]
     return first_word_in_sentence
 
 def generate_message(message, chat_id):
+    print(message)
     message = re.sub(r"http\S+", " ", message)
     message = re.sub(r"\S*@\S*\s?", " ", message)
-    message = re.sub(r"\W+", " ", message)
+    #message = re.sub(r"\W+", " ", message)
     message = re.sub(r"\n", " ", message)
     words_in_message = re.findall(r"[\w]+|[^\s\w]", message)
     if message[0] == '>' :
-        firstline_len = random.randint(1,10)                                           
-        max_greentext_lines = random.randint(1,4)
+        firstline_len = 10                                          
+        max_greentext_lines = 4
         greentext_lines = 0
-        current_word_in_greentext = first_word_finder(words_in_message)
+        current_word_in_greentext = first_word_finder(words_in_message, chat_id)
         greentext = ['>',current_word_in_greentext]
         max_len_of_line = 5
         while len(greentext) < firstline_len:
-            search = "SELECT word_1 FROM dickdump WHERE chat_id=? AND word_0=?"
+            search = "SELECT word_1 FROM dickdump_test WHERE chat_id=? AND word_0=?"
             cursor.execute(search, [(chat_id), (current_word_in_greentext)])
             search_result = cursor.fetchone()
             if search_result == None:
@@ -144,16 +156,18 @@ def generate_message(message, chat_id):
             max_len_of_line = random.randint(1,10)
             currentline_len = 0
             while currentline_len < max_len_of_line:
+                current_word_in_greentext = random_first_word_finder(words_in_message, chat_id)
+                print(current_word_in_greentext)
                 currentline_len += 1
-                search = "SELECT word_1 FROM dickdump WHERE chat_id=? AND word_0=?"
+                search = "SELECT word_1 FROM dickdump_test WHERE chat_id=? AND word_0=?"
                 cursor.execute(search, [(chat_id), (current_word_in_greentext)])
                 search_result = cursor.fetchone()
                 if search_result == None:
                     if current_word_in_greentext.isalpha() == False:
-                        current_word_in_greentext = first_word_finder(words_in_message)
+                        current_word_in_greentext = random_first_word_finder(words_in_message)
                         break
                     else:
-                        current_word_in_greentext = random.choice([".", ",", "!", "?"])
+                        current_word_in_greentext = random_first_word_finder(words_in_message)
                         greentext.append(current_word_in_greentext)
                 else:
                     search_result_as_dict = eval(search_result[0])
@@ -162,11 +176,11 @@ def generate_message(message, chat_id):
                     random_next_word = random.choices(keys_list, weights=values_list, k=1)
                     if random_next_word[0] == '.' or random_next_word[0] == '?' or random_next_word[0] == '!':
                         greentext.append('\n')
-                        current_word_in_sentence = random_next_word[0]
+                        current_word_in_greentext = random_next_word[0]
                         break
                     else:
                         greentext.append(random_next_word[0])
-                        current_word_in_sentence = random_next_word[0]
+                        current_word_in_greentext = random_next_word[0]
             pass
 
 
@@ -186,7 +200,7 @@ def generate_message(message, chat_id):
             sentences_amount += 1
             while sentence_lengh < max_sentence_lengh:
                 sentence_lengh += 1
-                search = "SELECT word_1 FROM dickdump WHERE chat_id=? AND word_0=?"
+                search = "SELECT word_1 FROM dickdump_test WHERE chat_id=? AND word_0=?"
                 cursor.execute(search, [(chat_id), (current_word_in_sentence)])
                 search_result = cursor.fetchone()
                 if search_result == None:

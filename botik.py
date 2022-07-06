@@ -1,18 +1,18 @@
 '''
-ver. 0.3.5
+ver. 0.3.5 test
 '''
 import random, sqlite3, logging, urllib3
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-from teleconfig import token
+from teleconfig import token_test
 from generator import add_words_in_message_to_dictionary, generate_message
 logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
 https = urllib3.PoolManager()
-conn = sqlite3.connect("dickdump.db", check_same_thread=False)
+conn = sqlite3.connect("dickdump_test.db", check_same_thread=False)
 conn2 = sqlite3.connect("chatsconfig.db", check_same_thread=False)
 cursor = conn.cursor()
 cursor2 = conn2.cursor()
-cursor.execute("""CREATE TABLE IF NOT EXISTS dickdump(chat_id integer, word_0 text, word_1 text)""")
+cursor.execute("""CREATE TABLE IF NOT EXISTS dickdump_test(chat_id integer, word_0 text, word_1 text)""")
 cursor2.execute("""CREATE TABLE IF NOT EXISTS chatsconfig(chat_id integer, yauheni_enabled integer, shitpost_chance integer)""")
 conn.commit()
 conn2.commit()
@@ -86,15 +86,14 @@ def message_handler(update, context):
     if chat_id in all_chat_ids and all_yauhenis_statuses[all_chat_ids.index(chat_id)]:
         add_words_in_message_to_dictionary(message, chat_id)
         d = int(2000*random.random())
-        print(d, all_chances[all_chat_ids.index(chat_id)])
-        if d < (all_chances[all_chat_ids.index(chat_id)]) or (update.effective_message.reply_to_message != None and update.effective_message.reply_to_message.from_user.username == "puklengtime_bot"):
+        if d < (all_chances[all_chat_ids.index(chat_id)]) or (update.effective_message.reply_to_message != None and update.effective_message.reply_to_message.from_user.username == "anywaymytestbot"):
             context.bot.send_message(chat_id = update.effective_message.chat_id, text = generate_message(message, chat_id))
         else:
             pass
 
 
 def main():
-    updater = Updater(token, use_context=True)
+    updater = Updater(token_test, use_context=True)
     updater.dispatcher.add_handler(CommandHandler('start', start)) #создает базу словаря
     updater.dispatcher.add_handler(CommandHandler('start_shitpost', start_shitpost)) #начать щитпостить
     updater.dispatcher.add_handler(CommandHandler('stop_shitpost', stop_shitpost)) #остановить щитпост
