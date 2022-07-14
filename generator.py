@@ -1,11 +1,14 @@
 '''
-ver. 0.3.5 test
+ver. 0.3.6
 '''
 import sqlite3, random, re
 
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
+zachem = ('зачем', 'зачем?', 'а зачем?', 'а зачем', 'но зачем', 'но зачем?', 'да зачем', 'да зачем?', 'zachem', 'зчем','зачм','зчм')
+beestickers = ['CAACAgIAAxkBAAEV9dViz62AYAzSdU9JCqf2ooWmW5QZWwAC-QEAAjHTyQGcZWU2FhByTSkE', 'CAACAgIAAxkBAAEV9eliz7EBrEgPKMrNOi0ZJqZustMp8AACdRIAAuQBqEjwo2HdYWpBnikE']
 
+    
 def make_text_look_good(sentence = list):
     good_looking_sentence = ' '.join(sentence)
     good_looking_sentence = re.sub(r"\s(?=[ , . ! ? : ; …])", "", good_looking_sentence)

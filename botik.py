@@ -1,10 +1,10 @@
 '''
-ver. 0.3.5
+ver. 0.3.6
 '''
 import random, sqlite3, logging, urllib3
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
-from generator import add_words_in_message_to_dictionary, generate_message
+from generator import add_words_in_message_to_dictionary, generate_message, zachem, beestickers
 logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
 https = urllib3.PoolManager()
@@ -28,6 +28,7 @@ all_chances = [row[2] for row in all_chats_fetch]
 def start(update, context):
     context.bot.send_message(chat_id = update.effective_message.chat_id, text = "Привет")
 
+
 def start_shitpost(update, context):
     chat_id = update.effective_message.chat.id
     if chat_id in all_chat_ids:
@@ -44,6 +45,7 @@ def start_shitpost(update, context):
         all_chances.append(1)
         context.bot.send_message(chat_id = update.effective_message.chat_id, text = "Стартую...")
     conn2.commit()
+
 
 def stop_shitpost(update, context):
     chat_id = update.effective_message.chat.id
@@ -80,17 +82,25 @@ def power(update, context):
         pass
     conn2.commit()
 
+
 def message_handler(update, context):
     chat_id = update.effective_message.chat.id
     message = update.effective_message.text
+    if message.lower().startswith(zachem):
+        update.message.reply_sticker(random.choice(beestickers))
+    else:
+        pass
     if chat_id in all_chat_ids and all_yauhenis_statuses[all_chat_ids.index(chat_id)]:
         add_words_in_message_to_dictionary(message, chat_id)
         d = int(2000*random.random())
-        print(d, all_chances[all_chat_ids.index(chat_id)])
         if d < (all_chances[all_chat_ids.index(chat_id)]) or (update.effective_message.reply_to_message != None and update.effective_message.reply_to_message.from_user.username == "puklengtime_bot"):
             context.bot.send_message(chat_id = update.effective_message.chat_id, text = generate_message(message, chat_id))
         else:
             pass
+
+
+def ment(update, context):
+    update.message.reply_text('Здравия желаю!')
 
 
 def main():
@@ -98,8 +108,9 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('start', start)) #создает базу словаря
     updater.dispatcher.add_handler(CommandHandler('start_shitpost', start_shitpost)) #начать щитпостить
     updater.dispatcher.add_handler(CommandHandler('stop_shitpost', stop_shitpost)) #остановить щитпост
-    updater.dispatcher.add_handler(CommandHandler('power', power)) #остановить щитпост
+    updater.dispatcher.add_handler(CommandHandler('power', power)) #установить силу щитпоста
     updater.dispatcher.add_handler(MessageHandler(Filters.text & (~Filters.command | ~Filters.forwarded), message_handler)) #обрабатывает сообщение
+    updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, ment)) # приветствие при добавлении в чат
     updater.start_polling()
     updater.idle()
 
