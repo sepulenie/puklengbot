@@ -1,11 +1,11 @@
 '''
-ver. 0.3.6
+ver. 0.3.7
 '''
 import sqlite3, random, re
 
 conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 cursor = conn.cursor()
-zachem = ('зачем', 'зачем?', 'а зачем?', 'а зачем', 'но зачем', 'но зачем?', 'да зачем', 'да зачем?', 'zachem', 'зчем','зачм','зчм')
+zachem = ('зачем', 'зачем?', 'а зачем?', 'а зачем', 'но зачем', 'но зачем?', 'да зачем', 'да зачем?', 'ну зачем', 'ну зачем?', 'zachem', 'зчем','зачм','зчм')
 beestickers = ['CAACAgIAAxkBAAEV9dViz62AYAzSdU9JCqf2ooWmW5QZWwAC-QEAAjHTyQGcZWU2FhByTSkE', 'CAACAgIAAxkBAAEV9eliz7EBrEgPKMrNOi0ZJqZustMp8AACdRIAAuQBqEjwo2HdYWpBnikE']
 
     
@@ -67,7 +67,7 @@ def add_words_in_message_to_dictionary(message, chat_id):
             search_result_word_1 = dict
             search_result_word_1 = eval(search_result[2])
             if word_1 in search_result_word_1.keys():
-                search_result_word_1.update({word_1: (search_result_word_1.get(word_1)+5)})
+                search_result_word_1.update({word_1: (search_result_word_1.get(word_1)+len(word_1))})
                 cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=? AND chat_id=?", (repr(search_result_word_1), search_result_word_0, chat_id))
             else:
                 search_result_word_1.update({word_1:1})

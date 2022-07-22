@@ -1,5 +1,5 @@
 '''
-ver. 0.3.6
+ver. 0.3.7
 '''
 import random, sqlite3, logging, urllib3
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
@@ -86,10 +86,6 @@ def power(update, context):
 def message_handler(update, context):
     chat_id = update.effective_message.chat.id
     message = update.effective_message.text
-    if message.lower().startswith(zachem):
-        update.message.reply_sticker(random.choice(beestickers))
-    else:
-        pass
     if chat_id in all_chat_ids and all_yauhenis_statuses[all_chat_ids.index(chat_id)]:
         add_words_in_message_to_dictionary(message, chat_id)
         d = int(2000*random.random())
@@ -97,6 +93,10 @@ def message_handler(update, context):
             context.bot.send_message(chat_id = update.effective_message.chat_id, text = generate_message(message, chat_id))
         else:
             pass
+    if message.lower().startswith(zachem) or message.lower().endswith(zachem):
+        update.message.reply_sticker(random.choice(beestickers))
+    else:
+        pass
 
 
 def ment(update, context):
