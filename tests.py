@@ -1,18 +1,11 @@
-import re
-message = ["#", "калговна"]
-good_looking_sentence = ' '.join(message)
-good_looking_sentence = re.sub(r"\s(?=[ , . ! ? : ; …])", "", good_looking_sentence)
-good_looking_sentence = re.sub(r"(?<=[« \( \] \{ ])\s|\s(?=[»\) \] \} ])", "", good_looking_sentence)
-good_looking_sentence = re.sub(r"(?<=[a-zA-Z])\s(?=['`’])|((?<=['`’])\s(?=[a-zA-Z]))", "", good_looking_sentence)
-good_looking_sentence = re.sub(" - ", "-", good_looking_sentence)
-good_looking_sentence = re.sub(" / ", "/", good_looking_sentence)
-if good_looking_sentence.count('"') % 2 == 1:
-        good_looking_sentence = re.sub(r'"', '', good_looking_sentence)
-else:
-        good_looking_sentence = re.sub(r"([\"']+[*\w\W]+[\"])", r" \1 ", good_looking_sentence)
-good_looking_sentence = re.sub(r"(?<=[?!\.,@#$%^&…])[?!\.,@#$%^&*()\"';:+=-…]+", "", good_looking_sentence)
-good_looking_sentence = re.sub(r"(?<=[0..9])\s(?=\%)", "", good_looking_sentence)
-good_looking_sentence = re.sub(r"(?<=#)\s(?=\w)", "", good_looking_sentence)
-good_looking_sentence = re.sub(r"\s\*\s", "*", good_looking_sentence)
-print(message)
-print(good_looking_sentence)
+import random, sqlite3, logging, urllib3
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from teleconfig import token
+from generator import add_words_in_message_to_dictionary, generate_message, zachem, beestickers
+logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+
+https = urllib3.PoolManager()
+conn = sqlite3.connect("dickdump_test.db", check_same_thread=False)
+cursor = conn.cursor()
+cursor.execute("""CREATE TABLE IF NOT EXISTS dickdump(chat_id integer, word_0 text, word_1 text, is_)""")
+conn.commit()
