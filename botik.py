@@ -1,5 +1,5 @@
 '''
-ver. 0.3.7
+ver. 0.4.0
 '''
 import random, sqlite3, logging, urllib3
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
@@ -12,7 +12,7 @@ conn = sqlite3.connect("dickdump.db", check_same_thread=False)
 conn2 = sqlite3.connect("chatsconfig.db", check_same_thread=False)
 cursor = conn.cursor()
 cursor2 = conn2.cursor()
-cursor.execute("""CREATE TABLE IF NOT EXISTS dickdump(chat_id integer, word_0 text, word_1 text)""")
+cursor.execute("""CREATE TABLE IF NOT EXISTS dickdump(chat_id integer, word_0 text, word_1 text, is_first integer)""")
 cursor2.execute("""CREATE TABLE IF NOT EXISTS chatsconfig(chat_id integer, yauheni_enabled integer, shitpost_chance integer)""")
 conn.commit()
 conn2.commit()
@@ -85,7 +85,7 @@ def power(update, context):
 
 def message_handler(update, context):
     chat_id = update.effective_message.chat.id
-    message = update.effective_message.text
+    message = update.effective_message.text or update.effective_message.caption
     if chat_id in all_chat_ids and all_yauhenis_statuses[all_chat_ids.index(chat_id)]:
         add_words_in_message_to_dictionary(message, chat_id)
         d = int(2000*random.random())
@@ -109,7 +109,7 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('start_shitpost', start_shitpost)) #начать щитпостить
     updater.dispatcher.add_handler(CommandHandler('stop_shitpost', stop_shitpost)) #остановить щитпост
     updater.dispatcher.add_handler(CommandHandler('power', power)) #установить силу щитпоста
-    updater.dispatcher.add_handler(MessageHandler(Filters.text & (~Filters.command | ~Filters.forwarded), message_handler)) #обрабатывает сообщение
+    updater.dispatcher.add_handler(MessageHandler((Filters.text | Filters.caption) & (~Filters.command | ~Filters.forwarded), message_handler)) #обрабатывает сообщение
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, ment)) # приветствие при добавлении в чат
     updater.start_polling()
     updater.idle()
