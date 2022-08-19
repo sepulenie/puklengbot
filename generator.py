@@ -1,5 +1,5 @@
 '''
-ver. 0.4.0
+ver. 0.4.1
 
 
 '''
@@ -116,14 +116,14 @@ def generate_message(message, chat_id):
     message = re.sub(r"\W+", " ", message)
     message = re.sub(r"\n", " ", message)
     words_in_message = re.findall(r"[\w]+|[^\s\w]", message)
-    max_sentences_amount = random.randint(1, 5)
+    max_sentences_amount = random.randint(1, 10)
     funcs = [first_word_finder, random_first_word_finder]
     sentences_amount = 0
-    #current_word_in_sentence = random.choice(funcs)(words_in_message, chat_id)
-    current_word_in_sentence = random_first_word_finder(words_in_message, chat_id)
+    current_word_in_sentence = random.choice(funcs)(words_in_message, chat_id)
+    #current_word_in_sentence = random_first_word_finder(words_in_message, chat_id)
     sentence = [current_word_in_sentence]
     while sentences_amount < max_sentences_amount:
-        max_sentence_lengh = random.randint(1, 10)
+        max_sentence_lengh = random.randint(1, 14)
         sentence_lengh = 0
         sentences_amount += 1
         while sentence_lengh < max_sentence_lengh:
