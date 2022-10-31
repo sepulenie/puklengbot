@@ -1,5 +1,5 @@
 '''
-ver. 0.4.1
+ver. 0.4.2
 
 
 '''
@@ -14,13 +14,14 @@ beestickers = ['CAACAgIAAxkBAAEV9dViz62AYAzSdU9JCqf2ooWmW5QZWwAC-QEAAjHTyQGcZWU2
 def make_text_look_good(sentence = list):
     good_looking_sentence = ' '.join(sentence)
     good_looking_sentence = re.sub(r"\s(?=[ , . ! ? : ; …])", "", good_looking_sentence)
-    good_looking_sentence = re.sub(r"(?<=[«\(\[\{])\s|\s(?=[»\)\]\}])", "", good_looking_sentence)
+    good_looking_sentence = re.sub(r"(?<=[«\(\[\{“])\s|\s(?=[»\)\]\}”])", "", good_looking_sentence)
     good_looking_sentence = re.sub(r"(?<=[a-zA-Z])\s(?=['`’])|((?<=['`’])\s(?=[a-zA-Z]))", "", good_looking_sentence)
+    good_looking_sentence = re.sub(r"(?<=[❗⚡])\s", "", good_looking_sentence)
     good_looking_sentence = re.sub(" - ", "-", good_looking_sentence)
     good_looking_sentence = re.sub(" / ", "/", good_looking_sentence)
     if good_looking_sentence.count('"') % 2 == 1:
         good_looking_sentence = re.sub(r'"', '', good_looking_sentence)
-    good_looking_sentence = re.sub(r"([\"']+[*\w\W]+[\"])", r" \1 ", good_looking_sentence)
+    good_looking_sentence = re.sub(r"\"\s*([^\"]*?)\s*\"", "\1", good_looking_sentence)
     return good_looking_sentence
 
 
@@ -116,14 +117,56 @@ def generate_message(message, chat_id):
     message = re.sub(r"\W+", " ", message)
     message = re.sub(r"\n", " ", message)
     words_in_message = re.findall(r"[\w]+|[^\s\w]", message)
-    max_sentences_amount = random.randint(1, 10)
+    max_sentences_amount = random.randint(1, 5)
     funcs = [first_word_finder, random_first_word_finder]
+    #funcs1 = [random_news_emoji]
     sentences_amount = 0
     current_word_in_sentence = random.choice(funcs)(words_in_message, chat_id)
-    #current_word_in_sentence = random_first_word_finder(words_in_message, chat_id)
+    #current_word_in_sentence = random_news_emoji_2(words_in_message, chat_id)
     sentence = [current_word_in_sentence]
     while sentences_amount < max_sentences_amount:
-        max_sentence_lengh = random.randint(1, 14)
+        max_sentence_lengh = random.randint(2, 8)
+        sentence_lengh = 0
+        sentences_amount += 1
+        while sentence_lengh < max_sentence_lengh:
+            sentence_lengh += 1
+            search = "SELECT word_1 FROM dickdump WHERE chat_id=? AND word_0=?"
+            cursor.execute(search, [(chat_id), (current_word_in_sentence)])
+            search_result = cursor.fetchone()
+            if search_result == None:
+                if current_word_in_sentence.isalpha() == False:
+                    break
+                else:
+                    current_word_in_sentence = random.choice([".", ",", "!", "?"])
+                    sentence.append(current_word_in_sentence)
+                break
+            else:
+                search_result_as_dict = eval(search_result[0])
+                keys_list = list(search_result_as_dict.keys())
+                values_list = list(search_result_as_dict.values())
+                random_next_word = random.choices(keys_list, weights=values_list, k=1)
+                if random_next_word[0] == '.' or random_next_word[0] == '?' or random_next_word[0] == '!':
+                    sentence.append(random_next_word[0])
+                    current_word_in_sentence = random_next_word[0]
+                    break
+                else:
+                    sentence.append(random_next_word[0])
+                    current_word_in_sentence = random_next_word[0]
+    final_sentence = make_text_look_good(sentence)
+    return final_sentence
+
+
+def generate_news(message, chat_id):
+    message = re.sub(r"http\S+", " ", message)
+    message = re.sub(r"\S*@\S*\s?", " ", message)
+    message = re.sub(r"\W+", " ", message)
+    message = re.sub(r"\n", " ", message)
+    max_sentences_amount = random.randint(1, 8)
+    sentences_amount = 0
+    current_word_in_sentence = random.choice(["❗", "⚡", "📍"])
+    sentence = [current_word_in_sentence]
+    while sentences_amount < max_sentences_amount:
+        max_sentence_lengh = random.randint(4, 14)
         sentence_lengh = 0
         sentences_amount += 1
         while sentence_lengh < max_sentence_lengh:

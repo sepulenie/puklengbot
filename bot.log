@@ -1,0 +1,11 @@
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
+    handler.handle_update(update, self, check, context)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
+    return self.callback(update, context)
+  File "botik.py", line 90, in message_handler
+    add_words_in_message_to_dictionary(message, chat_id)
+  File "/home/maxim/python/puklengbot/generator.py", line 75, in add_words_in_message_to_dictionary
+    cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=? AND chat_id=?", (repr(search_result_word_1), search_result_word_0, chat_id))
+sqlite3.OperationalError: database is locked

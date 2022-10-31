@@ -1,10 +1,10 @@
 '''
-ver. 0.4.1
+ver. 0.4.2
 '''
 import random, sqlite3, logging, urllib3
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
-from generator import add_words_in_message_to_dictionary, generate_message, zachem, beestickers
+from generator import add_words_in_message_to_dictionary, generate_message, generate_news,zachem, beestickers
 logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
 https = urllib3.PoolManager()
@@ -23,7 +23,7 @@ all_chats_fetch = (cursor2.fetchall())
 all_chat_ids = [row[0] for row in all_chats_fetch]
 all_yauhenis_statuses = [row[1] for row in all_chats_fetch]
 all_chances = [row[2] for row in all_chats_fetch]
-
+generator_message_types = [generate_message, generate_news]
 
 def start(update, context):
     context.bot.send_message(chat_id = update.effective_message.chat_id, text = "Привет")
@@ -90,7 +90,7 @@ def message_handler(update, context):
         add_words_in_message_to_dictionary(message, chat_id)
         d = int(2000*random.random())
         if d < (all_chances[all_chat_ids.index(chat_id)]) or (update.effective_message.reply_to_message != None and update.effective_message.reply_to_message.from_user.username == "puklengtime_bot"):
-            context.bot.send_message(chat_id = update.effective_message.chat_id, text = generate_message(message, chat_id))
+            context.bot.send_message(chat_id = update.effective_message.chat_id, text = random.choice(generator_message_types)(message, chat_id))
         else:
             pass
     if message.lower().startswith(zachem) or message.lower().endswith(zachem):
