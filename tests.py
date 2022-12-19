@@ -1,22 +1,28 @@
-import random, sqlite3, logging, urllib3
-'''from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-from teleconfig import token
-from generator import add_words_in_message_to_dictionary, generate_message, zachem, beestickers
-logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+import random
+from collections import defaultdict
+word_pairs = defaultdict(int)
 
-https = urllib3.PoolManager()
-conn = sqlite3.connect("dickdump.db", check_same_thread=False)
-cursor = conn.cursor()
-search = "SELECT * FROM dickdump WHERE chat_id=? AND word_0=? ORDER BY random()"
-cursor.execute(search, [-1001410341144, "⚡"])
-search_result = (cursor.fetchone())
-first_word_in_sentence = search_result[1]
-search = "SELECT word_1 FROM dickdump WHERE chat_id=? AND word_0=?"
-cursor.execute(search, [(-1001410341144), (first_word_in_sentence)])
-search_result = cursor.fetchone()
-print(search_result)
-'''
 
-first_emoji = "1"
-second_emoji = "2"
-print(random.choice(first_emoji, second_emoji))
+
+def process_message(message):
+  # Split the message into a list of words
+  words = message.split()
+  
+  # Initialize a defaultdict to store the word pairs and their frequency
+
+  # Iterate through the words and add each pair to the defaultdict
+  for i in range(len(words) - 1):
+    word_pairs[(words[i], words[i + 1])] += 1
+  
+  return word_pairs
+
+def generate_random_message(word_pairs):
+  # Choose a random word pair from the word_pairs defaultdict
+  word_pair = random.choice(list(word_pairs.keys()))
+  
+  # Concatenate the words in the pair and return the result
+  return " ".join(word_pair)
+
+
+print(process_message("одна рыба, две рыбы, три рыбы, четыре рыбы. Пять рыб. Двадцать одна рыба, тридцать четыре рыбы. одна клешня, две клешни"))
+generate_random_message(word_pairs)

@@ -19,9 +19,6 @@ def make_text_look_good(sentence = list):
     good_looking_sentence = re.sub(r"(?<=[❗⚡])\s", "", good_looking_sentence)
     good_looking_sentence = re.sub(" - ", "-", good_looking_sentence)
     good_looking_sentence = re.sub(" / ", "/", good_looking_sentence)
-    if good_looking_sentence.count('"') % 2 == 1:
-        good_looking_sentence = re.sub(r'"', '', good_looking_sentence)
-    good_looking_sentence = re.sub(r"\"\s*([^\"]*?)\s*\"", "\1", good_looking_sentence)
     return good_looking_sentence
 
 
@@ -161,12 +158,12 @@ def generate_news(message, chat_id):
     message = re.sub(r"\S*@\S*\s?", " ", message)
     message = re.sub(r"\W+", " ", message)
     message = re.sub(r"\n", " ", message)
-    max_sentences_amount = random.randint(1, 8)
+    max_sentences_amount = random.randint(2, 5)
     sentences_amount = 0
     current_word_in_sentence = random.choice(["❗", "⚡", "📍"])
     sentence = [current_word_in_sentence]
     while sentences_amount < max_sentences_amount:
-        max_sentence_lengh = random.randint(4, 14)
+        max_sentence_lengh = random.randint(4, 10)
         sentence_lengh = 0
         sentences_amount += 1
         while sentence_lengh < max_sentence_lengh:

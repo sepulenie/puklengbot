@@ -1,11 +1,29 @@
+telegram.vendor.ptb_urllib3.urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.connection.VerifiedHTTPSConnection object at 0x7f2c9c23eba8>: Failed to establish a new connection: [Errno -2] Name or service not known')': /bot485079174:AAHwotM-mDKdGCtFOjjPze_hfIj-l94-8PQ/getUpdates
+telegram.vendor.ptb_urllib3.urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.connection.VerifiedHTTPSConnection object at 0x7f2c9c23eeb8>: Failed to establish a new connection: [Errno -2] Name or service not known')': /bot485079174:AAHwotM-mDKdGCtFOjjPze_hfIj-l94-8PQ/getUpdates
+telegram.vendor.ptb_urllib3.urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None)) after connection broken by 'NewConnectionError('<telegram.vendor.ptb_urllib3.urllib3.connection.VerifiedHTTPSConnection object at 0x7f2c9c23e8d0>: Failed to establish a new connection: [Errno -2] Name or service not known')': /bot485079174:AAHwotM-mDKdGCtFOjjPze_hfIj-l94-8PQ/getUpdates
+telegram.ext.updater - ERROR - Error while getting Updates: Bad Gateway
+telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/updater.py", line 379, in _network_loop_retry
+    if not action_cb():
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/updater.py", line 340, in polling_action_cb
+    allowed_updates=allowed_updates)
+  File "<decorator-gen-31>", line 2, in get_updates
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/bot.py", line 67, in decorator
+    result = func(*args, **kwargs)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/bot.py", line 2138, in get_updates
+    result = self._request.post(url, data, timeout=float(read_latency) + float(timeout))
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/utils/request.py", line 333, in post
+    **urlopen_kwargs)
+  File "/home/maxim/.local/lib/python3.7/site-packages/telegram/utils/request.py", line 254, in _request_wrapper
+    raise NetworkError('Bad Gateway')
+telegram.error.NetworkError: Bad Gateway
 telegram.ext.dispatcher - ERROR - No error handlers are registered, logging exception.
 Traceback (most recent call last):
   File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/dispatcher.py", line 340, in process_update
     handler.handle_update(update, self, check, context)
   File "/home/maxim/.local/lib/python3.7/site-packages/telegram/ext/handler.py", line 119, in handle_update
     return self.callback(update, context)
-  File "botik.py", line 90, in message_handler
-    add_words_in_message_to_dictionary(message, chat_id)
-  File "/home/maxim/python/puklengbot/generator.py", line 75, in add_words_in_message_to_dictionary
-    cursor.execute("UPDATE dickdump SET word_1=? WHERE word_0=? AND chat_id=?", (repr(search_result_word_1), search_result_word_0, chat_id))
-sqlite3.OperationalError: database is locked
+  File "botik.py", line 97, in message_handler
+    update.message.reply_sticker(random.choice(beestickers))
+AttributeError: 'NoneType' object has no attribute 'reply_sticker'
