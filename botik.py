@@ -1,10 +1,12 @@
 '''
-ver. 0.4.2
+ver. 0.4.3
 '''
-import random, sqlite3, logging, urllib3
+import random, sqlite3, logging, urllib3, asyncio
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from teleconfig import token
+from datetime import datetime
 from generator import add_words_in_message_to_dictionary, generate_message, generate_news,zachem, beestickers
+from shepelevin import shepelenie
 logging.basicConfig(filename='bot.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
 
 https = urllib3.PoolManager()
@@ -97,10 +99,24 @@ def message_handler(update, context):
         update.message.reply_sticker(random.choice(beestickers))
     else:
         pass
+    try:
+        if update.effective_message.forward_from_chat.id == -1001143524041:
+            update.message.reply_text(shepelenie(message))
+    except AttributeError:
+        pass
 
 
 def ment(update, context):
     update.message.reply_text('Здравия желаю!')
+
+async def alarm(updater):
+    while True:
+        today = datetime.now()
+        if today.hour == 13 and today.minute == 12:
+            updater.bot.send_message(chat_id = -1001410341144, text = 'Московское время 13:12')
+            await asyncio.sleep(86000)
+        else:
+            await asyncio.sleep(20)
 
 
 def main():
@@ -112,6 +128,7 @@ def main():
     updater.dispatcher.add_handler(MessageHandler((Filters.text | Filters.caption) & (~Filters.command | ~Filters.forwarded), message_handler)) #обрабатывает сообщение
     updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, ment)) # приветствие при добавлении в чат
     updater.start_polling()
+    asyncio.run(alarm(updater))
     updater.idle()
 
 if __name__ == '__main__':
